@@ -65,32 +65,43 @@ export default async function ArcDetailPage({ params }: { params: { id: string }
   return (
     <div className="bg-white">
       <div className="container mx-auto pt-4 pb-24 px-4">
-        <div
-          className="py-12 mb-12 text-center"
-          style={{
-            backgroundColor:arc.color,
-            color: arc.textColor ? arc.textColor : "white",
-          }}
-        >
-          <h1 className="font-serif text-4xl md:text-5xl font-light mb-4">{arc.title}</h1>
-          <p className="max-w-3xl mx-auto text-lg md:text-xl opacity-90">{arc.description}</p>
-        </div>
+      <div
+        className="py-10 mb-12 text-center px-4 sm:px-8 md:px-0"
+        style={{
+          backgroundColor: arc.color,
+          color: arc.textColor ? arc.textColor : "white",
+        }}
+      >
+        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light mb-4">{arc.title}</h1>
+        <p className="max-w-3xl mx-auto text-base sm:text-lg md:text-xl opacity-90">{arc.description}</p>
+      </div>
 
         <div className="max-w-6xl mx-auto">
-          <div className="flex justify-between items-center mb-12">
-            <h2 className="font-serif text-3xl font-light mb-4">Books in This Arc</h2>
+          <div className="mb-8">
+  <h2 className="font-serif text-3xl font-light mb-4 text-center sm:text-left">
+    Books in This Arc
+  </h2>
 
-<div className="flex justify-end gap-5 mb-12">
-  <Link href="/arcs" className="inline-block px-6 py-3 border border-black text-sm font-medium bg-white">
-    Back to All Arcs
-  </Link>
-  <Link href="/start-your-rebind" className="inline-block px-6 py-3 border border-black text-sm font-medium bg-black-700 text-black bg-[#E6E6E6]">
-    Custom Rebind
-  </Link>
+  {/* Buttons on desktop (side-by-side) */}
+  <div className="hidden sm:flex justify-end gap-5">
+    <Link href="/arcs" className="inline-block px-6 py-3 border border-black text-sm font-medium bg-white">
+      Back to All Arcs
+    </Link>
+    <Link href="/start-your-rebind" className="inline-block px-6 py-3 border border-black text-sm font-medium bg-black-700 text-black bg-[#E6E6E6]">
+      Custom Rebind
+    </Link>
+  </div>
+
+  {/* Buttons on mobile (stacked under title) */}
+  <div className="flex flex-col sm:hidden items-center gap-3 mt-6">
+    <Link href="/arcs" className="w-full text-center px-6 py-3 border border-black text-sm font-medium bg-white">
+      Back to All Arcs
+    </Link>
+    <Link href="/start-your-rebind" className="w-full text-center px-6 py-3 border border-black text-sm font-medium text-black bg-[#E6E6E6]">
+      Custom Rebind
+    </Link>
+  </div>
 </div>
-
-
-          </div>
 
           {arcBooks.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
