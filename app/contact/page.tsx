@@ -21,12 +21,19 @@ export default function ContactPage() {
         {/* Divider */}
         <div className="w-10 h-px bg-neutral-300 mx-auto" />
 
-        {/* CTA Button */}
-        <div>
+        {/* CTA Button (Grouped) */}
+        <div className="mt-8 flex flex-col items-center space-y-4">
+        <Link
+          href="/arcs/all"
+          className="inline-block px-6 py-2 border border-black text-black bg-white text-sm font-medium"
+          >
+            View All Books
+          </Link>
+  
           <Button
             asChild
             size="lg"
-            className="bg-neutral-900 hover:bg-neutral-800 text-white px-8 py-5 text-base font-medium tracking-wide rounded"
+            className="bg-neutral-900 hover:bg-neutral-800 text-white px-8 py-3 text-base font-medium tracking-wide rounded mt-1"
           >
             <Link href="/start-your-rebind">Create a Custom Book →</Link>
           </Button>
