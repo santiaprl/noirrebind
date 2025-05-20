@@ -57,22 +57,24 @@ export default function ProductPage() {
                 </div>
               ))}
             </div>
-            <button
-              onClick={() => instanceRef.current?.prev()}
-              className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white px-2 py-1 shadow"
-            >
-              ◀
-            </button>
-            <button
-              onClick={() => instanceRef.current?.next()}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white px-2 py-1 shadow"
-            >
-              ▶
-            </button>
+             {/* Left arrow */}
+      <button
+     onClick={() => instanceRef.current?.prev()}
+       className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white text-black rounded-full shadow-md flex items-center justify-center w-10 h-10 sm:w-8 sm:h-8"
+        >
+          ←
+        </button>
+        {/* Right arrow */}
+        <button
+          onClick={() => instanceRef.current?.next()}
+          className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white text-black rounded-full shadow-md flex items-center justify-center w-10 h-10 sm:w-8 sm:h-8"
+        >
+          →
+        </button>
           </div>
 
           {/* Product Details */}
-          <div className="flex flex-col space-y-8">
+          <div className="flex flex-col space-y-8"> 
             <div className="space-y-2">
               <h1 className="text-3xl md:text-4xl font-light tracking-tight">The 4-Hour Workweek</h1>
               <p className="text-2xl font-light">$105.00</p>
