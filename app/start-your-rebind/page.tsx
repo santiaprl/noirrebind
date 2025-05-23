@@ -35,7 +35,7 @@ export default function StartYourRebindPage() {
     },
     {
       q: "How much does a custom rebind cost?",
-      a: "Custom rebinds typically start at $95, with pricing based on book condition, design complexity, and materials.Your quote will reflect your exacr request - no surprises.",
+      a: "Custom rebinds typically start at $95, with pricing based on book condition, design complexity, and materials.Your quote will reflect your exact request - no surprises.",
     },
     {
       q: "What if I’m unsure about the design?",
