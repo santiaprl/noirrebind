@@ -83,7 +83,7 @@ export default function ProductPage() {
             <div className="h-px bg-neutral-200" />
 
             <p className="text-neutral-600 leading-relaxed">
-              A luxury rebound of <strong>The 4-Hour Workweek</strong>, handcrafted in matte vegan lambskin leather with gold detailing. 
+              A luxury rebound of <strong>The 4-Hour Workweek</strong>, handcrafted in matte vegan leather with gold detailing. 
               Each book is carefully gift-wrapped in our signature style to elevate your space.
               This edition is built to elevate your space and inspire bold execution. 
               Ideal for those pursuing freedom, efficiency, and purpose-driven work — one intentional decision at a time.
