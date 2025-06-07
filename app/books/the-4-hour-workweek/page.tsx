@@ -93,7 +93,7 @@ export default function ProductPage() {
 
             <Button
               className="w-full md:w-auto bg-black hover:bg-neutral-800 text-white rounded-none py-6 text-base"
-              onClick={() => window.open("https://buy.stripe.com/7sI6oNbXh6IVcxyfZ0", "_blank")}
+              onClick={() => window.open("https://buy.stripe.com/bJe7sLaSjfFF3JHasU1Jm04", "_blank")}
             >
               Buy Now
             </Button>
