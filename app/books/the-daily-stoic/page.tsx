@@ -83,14 +83,14 @@ export default function ProductPage() {
             <div className="h-px bg-neutral-200" />
 
             <p className="text-neutral-600 leading-relaxed">
-              A luxury rebound of <strong>The Daily Stoic</strong>, handcrafted in matte black vegan leather and detailed with minimalist gold foil symbols representing the four Stoic virtues — wisdom, justice, courage, and temperance. The page edges are sanded for a raw, natural texture. Gift-wrapped in our signature aesthetic style, this edition invites quiet strength and steady growth — one page at a time, one virtue at a time.
+              A luxury rebound of <strong>The Daily Stoic</strong>, handcrafted in matte lambskin leather and detailed with minimalist gold foil symbols representing the four Stoic virtues — wisdom, justice, courage, and temperance. The page edges are sanded for a raw, natural texture. Gift-wrapped in our signature aesthetic style, this edition invites quiet strength and steady growth — one page at a time, one virtue at a time.
             </p>
 
             <div className="h-px bg-neutral-200" />
 
             <Button
               className="w-full md:w-auto bg-black hover:bg-neutral-800 text-white rounded-none py-6 text-base"
-              onClick={() => window.open("https://buy.stripe.com/3csaF35yTffrapqfYZ", "_blank")}
+              onClick={() => window.open("https://buy.stripe.com/6oUfZh2lNcttdkh44w1Jm03", "_blank")}
             >
               Buy Now
             </Button>
