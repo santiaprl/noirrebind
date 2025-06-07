@@ -310,7 +310,7 @@ export default function CommunityPage() {
       
       <p className="italic text-xs text-center mt-5 text-gray-900 max-w-sm mx-auto">
         Private spaces are coming soon—one for each emotional arc.
-        But if this arc speaks to where you are right now,{" "}
+        If this arc speaks to where you are right now,{" "}
         <a
           href="https://forms.gle/NVEGTg8gmonLmxxW7"
           target="_blank"
