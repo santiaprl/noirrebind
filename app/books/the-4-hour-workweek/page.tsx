@@ -77,13 +77,13 @@ export default function ProductPage() {
           <div className="flex flex-col space-y-8"> 
             <div className="space-y-2">
               <h1 className="text-3xl md:text-4xl font-light tracking-tight">The 4-Hour Workweek</h1>
-              <p className="text-2xl font-light">$105.00</p>
+              <p className="text-2xl font-light">$110.00</p>
             </div>
 
             <div className="h-px bg-neutral-200" />
 
             <p className="text-neutral-600 leading-relaxed">
-              A luxury rebound of <strong>The 4-Hour Workweek</strong>, handcrafted in matte black vegan leather with gold detailing. 
+              A luxury rebound of <strong>The 4-Hour Workweek</strong>, handcrafted in matte vegan lambskin leather with gold detailing. 
               Each book is carefully gift-wrapped in our signature style to elevate your space.
               This edition is built to elevate your space and inspire bold execution. 
               Ideal for those pursuing freedom, efficiency, and purpose-driven work — one intentional decision at a time.
