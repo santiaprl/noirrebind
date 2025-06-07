@@ -78,13 +78,13 @@ export default function ProductPage() {
           <div className="flex flex-col space-y-8">
             <div className="space-y-2">
               <h1 className="text-3xl md:text-4xl font-light tracking-tight">Atomic Habits</h1>
-              <p className="text-2xl font-light">$115.00</p>
+              <p className="text-2xl font-light">$130.00</p>
             </div>
 
             <div className="h-px bg-neutral-200" />
 
             <p className="text-neutral-600 leading-relaxed">
-              A luxury rebound of <strong>Atomic Habits</strong>, restored in matte black vegan leather with minimalist gold accents and gold-gilded page edges.
+              A luxury rebound of <strong>Atomic Habits</strong>, restored in matte black lambskin leather with minimalist gold accents and gold-gilded page edges.
               Each book is gift-wrapped in our signature aesthetic style. 
               Designed for those building intentional routines and reshaping identity through action. This edition is meant to ground your space
               and support your growth — one small habit at a time.
@@ -94,7 +94,7 @@ export default function ProductPage() {
 
             <Button
               className="w-full md:w-auto bg-black hover:bg-neutral-800 text-white rounded-none py-6 text-base"
-              onClick={() => window.open("https://buy.stripe.com/eVa6oNe5p0kxcxy4gg", "_blank")}
+              onClick={() => window.open("https://buy.stripe.com/6oU00j1hJ9hhbc9gRi1Jm05", "_blank")}
             >
               Buy Now
             </Button>
