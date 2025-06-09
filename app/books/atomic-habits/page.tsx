@@ -84,7 +84,7 @@ export default function ProductPage() {
             <div className="h-px bg-neutral-200" />
 
             <p className="text-neutral-600 leading-relaxed">
-              A luxury rebound of <strong>Atomic Habits</strong>, restored in matte black lambskin leather with minimalist gold accents and gold-gilded page edges.
+              A LIMITED EDITION rebound of <strong>Atomic Habits</strong>, restored in matte black lambskin leather with minimalist gold accents and gold-gilded page edges.
               Each book is gift-wrapped in our signature aesthetic style. 
               Designed for those building intentional routines and reshaping identity through action. This edition is meant to ground your space
               and support your growth — one small habit at a time.
