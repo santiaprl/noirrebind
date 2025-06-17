@@ -78,7 +78,7 @@ export default function ProductPage() {
           <div className="flex flex-col space-y-8">
             <div className="space-y-2">
               <h1 className="text-3xl md:text-4xl font-light tracking-tight">Atomic Habits</h1>
-              <p className="text-2xl font-light">$130.00</p>
+              <p className="text-2xl font-light">$135.00</p>
             </div>
 
             <div className="h-px bg-neutral-200" />
@@ -94,7 +94,7 @@ export default function ProductPage() {
 
             <Button
               className="w-full md:w-auto bg-black hover:bg-neutral-800 text-white rounded-none py-6 text-base"
-              onClick={() => window.open("https://buy.stripe.com/6oU00j1hJ9hhbc9gRi1Jm05", "_blank")}
+              onClick={() => window.open("https://buy.stripe.com/5kQ4gz1hJbpp5RP44w1Jm07", "_blank")}
             >
               Buy Now
             </Button>
