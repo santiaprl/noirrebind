@@ -31,7 +31,10 @@ export default function Home() {
             >
               Custom Request
             </Link>
-          </div>
+            </div>
+            <p className="text-center text-grey italic mt-10 text-sm">
+              Shipping is always free within the U.S
+            </p>
         </div>
       </section>
       
