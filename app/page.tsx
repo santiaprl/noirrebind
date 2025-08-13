@@ -20,10 +20,10 @@ export default function Home() {
 
           <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
             <Link
-              href="/arcs"
+              href="/arcs/all"
               className="inline-block px-8 py-3 bg-white text-black text-sm font-medium hover:bg-gray-200 transition-colors duration-300"
             >
-              Explore the Arcs
+              View All Books
             </Link>
             <Link
               href="/start-your-rebind"
