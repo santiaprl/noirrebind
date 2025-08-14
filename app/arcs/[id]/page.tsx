@@ -38,7 +38,7 @@ const arcs = [
 
 // Book data
 const books = [
-{ id: 1, title: "Breaking the Habit of Being Yourself", slug:"breaking-the-habit-of-being-yourself", arc: 1, image: "breaking/breaking_1.jpg", description: "Nothing will change in your life, until you change. Until you change your limiting beliefs, your destructive habits and your way of being.", hasPage: true },
+{ id: 1, title: "Breaking the Habit of Being Yourself", slug:"breaking-the", arc: 1, image: "breaking/breaking_1.jpg", description: "Nothing will change in your life, until you change. Until you change your limiting beliefs, your destructive habits and your way of being.", hasPage: true },
 { id: 2, title: "Atomic Habits", slug:"atomic-habits", arc: 2, image: "atomic-habits.jpg", description: "A quiet but powerful reminder that big change doesn't require drama—just small, consistent wins staked with intention.", hasPage: true },
 { id: 3, title: "Can't Hurt Me", slug:"cant-hurt-me", arc: 2, image: "cant/cant_1.jpg", description: "For the days when you feel scattered, or sorry for yourself. This is the book that will snap you back into self-respect", hasPage:true },
 { id: 4, title: "The Daily Stoic", slug:"the-daily-stoic", arc: 3, image: "Daily_Stoic_Large.jpeg", description: "In this book, you’ll find daily anchors to what matters most: stillness in the noise, virtue in the chaos, and the quiet courage to let go of what you can’t control.", hasPage: true },
