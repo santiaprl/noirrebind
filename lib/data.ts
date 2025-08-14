@@ -33,9 +33,10 @@ export const arcs = [
 
 // Book data
 export const books = [
-  { id: 1, title: "Atomic Habits", arc: 2, image: "atomic-habits.jpg", description: "A daily reminder that transformation starts with one intentional step." },
+  { id: 5, title: "The Alchemist", arc: 3, image:"Alchemist/alchemist_main.jpg", description: "A timeless reminder to trust your journey and follow the call of your personal legend."},
+  { id: 4, title: "Can't Hurt Me", arc: 2, image:"cant/cant_1.jpg", description: " Honoring David Goggins' story, a man who proved that you can overcome your demons by facing them eye to eye."},
+  { id: 6, title: "Breaking The Habit of Being Yourself", arc: 1, image:"breaking/breaking_1.jpg", description: "This book invites you to shed old patterns and step into conscious creation."},
+  { id: 1, title: "Atomic Habits", arc: 2, image: "atomic-habits.jpg", description: "Reminder that transformation starts with one intentional step." },
   { id: 2, title: "The 4-Hour Workweek", arc: 4, image: "4hour-after.png", description: "A bold invitation to escape burnout and design life on your terms." },
-  { id: 3, title: "The Daily Stoic", arc: 3, image:"Daily_Stoic_Large.jpeg", description: "A grounding companion for clarity, resilience, and daily reflection from the greatest stoic philosophers"},
-  { id: 3, title: "The Alchemist", arc: 3, image:"Alchemist/alchemist_main.jpg", description: "A story that "},
-
+  { id: 3, title: "The Daily Stoic", arc: 3, image:"Daily_Stoic_Large.jpeg", description: "A daily companion for clarity, resilience, and reflection from the greatest stoics."},
 ]
