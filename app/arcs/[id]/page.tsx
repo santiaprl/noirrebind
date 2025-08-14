@@ -38,11 +38,11 @@ const arcs = [
 
 // Book data
 const books = [
-{ id: 1, title: "Breaking the Habit of Being Yourself", slug:"breaking-the-habit-of-being-yourself", arc: 1, image: "Arc_1_cs.png", description: "Nothing will change in your life, until you change. Until you change your limiting beliefs, your destructive habits and your way of being." },
+{ id: 1, title: "Breaking the Habit of Being Yourself", slug:"breaking-the-habit-of-being-yourself", arc: 1, image: "breaking/breaking_1.jpg", description: "Nothing will change in your life, until you change. Until you change your limiting beliefs, your destructive habits and your way of being.", hasPage: true },
 { id: 2, title: "Atomic Habits", slug:"atomic-habits", arc: 2, image: "atomic-habits.jpg", description: "A quiet but powerful reminder that big change doesn't require drama—just small, consistent wins staked with intention.", hasPage: true },
-{ id: 3, title: "Can't Hurt Me", slug:"cant-hurt-me", arc: 2, image: "Arc_2_cs.png", description: "For the days when you feel scattered, or sorry for yourself. This is the book that will snap you back into self-respect" },
-{ id: 4, title: "The Daily Stoic", slug:"the-daily-stoic", arc: 3, image: "Daily_Stoic_Large.jpeg", description: "Daily training in stillness, virtue, and self-mastery for when life demands more than emotion.", hasPage: true },
-{ id: 5, title: "The Power of Now", slug:"the-power-of-now", arc: 3, image: "Arc_3_cs.png", description: "Break free from overthinking and return to the only moment you have, now." },
+{ id: 3, title: "Can't Hurt Me", slug:"cant-hurt-me", arc: 2, image: "cant/cant_1.jpg", description: "For the days when you feel scattered, or sorry for yourself. This is the book that will snap you back into self-respect", hasPage:true },
+{ id: 4, title: "The Daily Stoic", slug:"the-daily-stoic", arc: 3, image: "Daily_Stoic_Large.jpeg", description: "In this book, you’ll find daily anchors to what matters most: stillness in the noise, virtue in the chaos, and the quiet courage to let go of what you can’t control.", hasPage: true },
+{ id: 5, title: "The Alchemist", slug:"the-alchemist", arc: 3, image: "Alchemist/alchemist_main.jpg", description: "Walk with Santiago to find that a treasure isn't just measured in gold, but in the journey of becoming.", hasPage: true },
 { id: 6, title: "The 4-Hour Workweek", slug:"the-4-hour-workweek", arc: 4, image: "4hour-after.png", description: "Learn how to work less, earn more, and design a life on your own terms", hasPage: true },
 { id: 7, title: "The 48 Laws of Power", slug:"the-48-laws-of-power", arc: 4, image: "Arc_4_cs.png", description: "Power is silent, strategic—and never sentimental. If you want to stop being played, start here." },
 ]
@@ -51,7 +51,7 @@ export default async function ArcDetailPage({ params }: { params: { id: string }
   const arcId = Number.parseInt(params?.id ?? '') ;
 
 
-  // Find the arc by ID
+  // Find the arc by ID 
   const arc = arcs.find((a) => a.id === arcId) ;
 
   // If arc doesn't exist, return 404
