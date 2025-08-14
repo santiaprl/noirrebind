@@ -33,9 +33,9 @@ export const arcs = [
 
 // Book data
 export const books = [
-  { id: 1, title: "Atomic Habits", arc: 2, image: "atomic-habits.jpg", description: "Small changes lead to remarkable results." },
-  { id: 2, title: "The 4-Hour Workweek", arc: 4, image: "4hour-after.png", description: "Escape burnout and design your dream life." },
-  { id: 3, title: "The Daily Stoic", arc: 3, image:"Daily_Stoic_Large.jpeg", description: "A daily companion filled with timeless stoic wisdom."},
-  { id: 3, title: "The Alchemist", arc: 3, image:"Alchemist/alchemist_main.jpg", description: "A daily companion filled with timeless stoic wisdom."},
+  { id: 1, title: "Atomic Habits", arc: 2, image: "atomic-habits.jpg", description: "A daily reminder that transformation starts with one intentional step." },
+  { id: 2, title: "The 4-Hour Workweek", arc: 4, image: "4hour-after.png", description: "A bold invitation to escape burnout and design life on your terms." },
+  { id: 3, title: "The Daily Stoic", arc: 3, image:"Daily_Stoic_Large.jpeg", description: "A grounding companion for clarity, resilience, and daily reflection from the greatest stoic philosophers"},
+  { id: 3, title: "The Alchemist", arc: 3, image:"Alchemist/alchemist_main.jpg", description: "A story that "},
 
 ]
