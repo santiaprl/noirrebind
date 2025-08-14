@@ -122,17 +122,17 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Second Row - The 4-Hour Workweek */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Second Row - Alchemist */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 items-start justify-center text center">
               <div className="space-y-2">
                 <p className="font-medium text-center">Before</p>
-                <div className="relative h-[400px] flex items-center justify-center bg-gray-50">
-                  <div className="relative w-[280px] h-[390px] ">
+                <div className="flex items-center justify-center h-[400px] bg-gray-50">
+                  <div className="relative w-[280px] h-[360px] overflow-hidden">
                     <Image
-                      src="/images/4hour-before.png"
-                      alt="Before: The 4-Hour Workweek original paperback"
+                      src="/images/Alchemist/alchemist_before.jpeg"
+                      alt="Before: The Alchemist original cover"
                       fill
-                      className="object-contain object-center  translate-y-[5px]"
+                      className="object-cover object-center scale-110"
                     />
                   </div>
                 </div>
@@ -140,12 +140,12 @@ export default function Home() {
               <div className="space-y-2">
                 <p className="font-medium text-center">After</p>
                 <div className="flex items-center justify-center h-[400px] bg-gray-50">
-                  <div className="relative w-[280px] h-[350px] overflow-hidden">
+                  <div className="relative w-[280px] h-[360px] overflow-hidden">
                     <Image
-                      src="/images/4hour-after.png"
-                      alt="After: The 4-Hour Workweek leather-bound with gold Lamborghini design"
+                      src="/images/Alchemist/alchemist_cover.jpeg"
+                      alt="After: The Alchemist cover after"
                       fill
-                      className="object-contain object-center  translate-y-[2px]"
+                      className="object-cover object-center "
                     />
                   </div>
                 </div>
