@@ -24,7 +24,7 @@ export default function ProcessPage() {
             {/* Video 2 */}
             <div className="relative aspect-[9/16] bg-black">
               <video className="w-full h-full object-cover" autoPlay loop muted playsInline>
-                <source src="/videos/Unboxing.mp4" type="video/mp4" />
+                <source src="/videos/unboxing_gift.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </div>
@@ -32,7 +32,7 @@ export default function ProcessPage() {
             {/* Video 3 */}
             <div className="relative aspect-[9/16] bg-black">
               <video className="w-full h-full object-cover" autoPlay loop muted playsInline>
-                <source src="/videos/Goggins_video.mp4" type="video/mp4" />
+                <source src="/videos/david_video.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </div>
