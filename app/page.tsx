@@ -33,7 +33,7 @@ export default function Home() {
             </Link>
             </div>
             <p className="text-center text-grey italic mt-10 text-sm">
-              Shipping is always free within the U.S
+              Enjoy free U.S shipping, exclusively through our site.
             </p>
         </div>
       </section>
