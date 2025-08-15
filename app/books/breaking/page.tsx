@@ -79,17 +79,18 @@ export default function ProductPage() {
           {/* Product Details */}
           <div className="flex flex-col space-y-8">
             <div className="space-y-2">
-              <h1 className="text-3xl md:text-4xl font-light tracking-tight">Breaking</h1>
+              <h1 className="text-3xl md:text-4xl font-light tracking-tight">Breaking The Habit of Being Yourself</h1>
               <p className="text-2xl font-light">$135.00</p>
             </div>
 
             <div className="h-px bg-neutral-200" />
 
             <p className="text-neutral-600 leading-relaxed">
-              A LIMITED EDITION rebound of <strong>Breaking</strong>, restored in matte black lambskin leather with minimalist gold accents and gold-gilded page edges.
-              Each book is gift-wrapped in our signature aesthetic style. 
-              Designed for those building intentional routines and reshaping identity through action. This edition is meant to ground your space
-              and support your growth — one small habit at a time.
+              A Handcrafted Leather Edition of <strong>Breaking The Habit of Being Yourself</strong>, by Dr.Joe Dispenza 
+              Rebound in premium blue lambskin leather. A transforming book that reminds you of the ability to create a life you desire, which happens
+              the moment you let go of the character you've been playing this whole time. Take back your power today because the best time to plan a tree was 20 years ago,
+              the second best time is today. 
+              Each copy is carefully rebound by hand, making it one of a kind.
             </p>
 
             <div className="h-px bg-neutral-200" />
@@ -102,7 +103,7 @@ export default function ProductPage() {
             </Button>
 
             <p className="text-sm text-neutral-500 italic mt-4">
-              Please allow 9–12 business days before shipping.
+              Please allow 9–12 business days before shipping. Free U.S Shipping
             </p>
 
             {/* Contact Section */}

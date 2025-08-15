@@ -85,7 +85,10 @@ export default function ProductPage() {
             <div className="h-px bg-neutral-200" />
 
             <p className="text-neutral-600 leading-relaxed">
-              A luxury rebound of <strong>Can't Hurt Me</strong>, handcrafted in matte lambskin leather and detailed with minimalist gold foil symbols representing the four Stoic virtues — wisdom, justice, courage, and temperance. The page edges are sanded for a raw, natural texture. Gift-wrapped in our signature aesthetic style, this edition invites quiet strength and steady growth — one page at a time, one virtue at a time.
+              A Handcrafted Leather rebound copy of <strong>Can't Hurt Me</strong>, by the one and only David Goggins, known for breaking
+              the limits of the human mind and body, he has inspired millions to silence their excuses, embrace discomfort and unluck their true potential.
+              Every detail of this edition was thoughtfully designed to reflect his story, a journey forged in pain, resilience, and self-mastery.
+              This rebind honors the man who refused to quit. 
             </p>
 
             <div className="h-px bg-neutral-200" />
@@ -98,7 +101,7 @@ export default function ProductPage() {
             </Button>
 
             <p className="text-sm text-neutral-500 italic mt-4">
-              Please allow 9–12 business days before shipping.
+              Please allow 9–12 business days before shipping. Free U.S Shipping
             </p>
 
             {!isSubmitted ? (

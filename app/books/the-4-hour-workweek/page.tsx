@@ -82,8 +82,8 @@ export default function ProductPage() {
             <div className="h-px bg-neutral-200" />
 
             <p className="text-neutral-600 leading-relaxed">
-              A LIMITED EDITION rebound of <strong>The 4-Hour Workweek</strong>, handcrafted in matte vegan leather with gold detailing. 
-              Each book is carefully gift-wrapped in our signature style to elevate your space.
+              A Handcrafted Leather Rebound copy of <strong>The 4-Hour Workweek</strong>, by Tim Ferris 
+              handcrafted in matte black lamskin leather. Each book is carefully gift-wrapped in our signature style to elevate your space.
               This edition is built to elevate your space and inspire bold execution. 
               Ideal for those pursuing freedom, efficiency, and purpose-driven work — one intentional decision at a time.
             </p>
@@ -98,7 +98,7 @@ export default function ProductPage() {
             </Button>
 
             <p className="text-sm text-neutral-500 italic mt-4">
-              Please allow 9–12 business days before shipping.
+              Please allow 9–12 business days before shipping. Free U.S Shipping
             </p>
 
             {!isSubmitted ? (

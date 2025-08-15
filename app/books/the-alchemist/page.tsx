@@ -86,10 +86,10 @@ export default function ProductPage() {
             <div className="h-px bg-neutral-200" />
 
             <p className="text-neutral-600 leading-relaxed">
-              A LIMITED EDITION rebound of <strong>The Alchemist</strong>, restored in matte black lambskin leather with minimalist gold accents and gold-gilded page edges.
-              Each book is gift-wrapped in our signature aesthetic style. 
-              Designed for those building intentional routines and reshaping identity through action. This edition is meant to ground your space
-              and support your growth — one small habit at a time.
+              This handcrafted leather edition of <strong>The Alchemist</strong>, by Paulo Coelho is meant to honor Santiago's journey.
+               A journey that not only built his strength, but also his character. A journey that taught us that there is more to life than just earning gold.
+               True richness consists in the will to pursue your Personal Legend even when it makes no sense, knowing that everything happens for you, not to you and being present 
+               in every step of the way because that where you can feel the true magic of life.
             </p>
 
             <div className="h-px bg-neutral-200" />
@@ -102,7 +102,7 @@ export default function ProductPage() {
             </Button>
 
             <p className="text-sm text-neutral-500 italic mt-4">
-              Please allow 9–12 business days before shipping.
+              Please allow 9–12 business days before shipping. Free U.S Shipping
             </p>
 
             {/* Contact Section */}
