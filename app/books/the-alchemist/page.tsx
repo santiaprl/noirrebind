@@ -16,9 +16,11 @@ export default function ProductPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const images = [
-    "/images/atomic-habits.jpg", 
-    "/images/atomic/atomic-habits2.jpg",
-    "/images/atomic/atomic-habits3.jpg",
+    "/images/Alchemist/alchemist_main.jpg", 
+    "/images/Alchemist/alchemist_1.jpeg", 
+    "/images/Alchemist/alchemist_2.jpeg",
+    "/images/Alchemist/alchemist_3.jpeg",
+    "/images/Alchemist/alchemist_4.jpeg",  
   ]
 
   const handleSubmit = async (e: React.FormEvent) => {

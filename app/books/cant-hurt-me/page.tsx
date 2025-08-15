@@ -14,9 +14,11 @@ export default function ProductPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const images = [
-    "/images/Daily_Stoic_Large.jpeg",
-    "/images/daily/daily2.jpg",
-    "/images/daily/daily3.jpg",
+    "/images/cant/cant_1.jpg",
+    "/images/cant/cant_2.jpeg",
+    "/images/cant/cant_3.jpeg",
+    "/images/cant/cant_4.jpeg",
+    "/images/cant/cant_5.jpeg",
   ]
 
   const handleSubmit = async (e: React.FormEvent) => {

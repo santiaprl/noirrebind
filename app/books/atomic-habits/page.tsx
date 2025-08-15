@@ -17,7 +17,7 @@ export default function ProductPage() {
 
   const images = [
     "/images/atomic-habits.jpg", 
-    "/images/atomic/atomic-habits2.jpg",
+    "/images/atomic/atomic_2.jpg",
     "/images/atomic/atomic-habits3.jpg",
   ]
 

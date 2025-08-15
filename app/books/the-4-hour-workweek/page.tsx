@@ -16,7 +16,6 @@ export default function ProductPage() {
   const images = [
     "/images/4hour-after.png",
     "/images/4hour-after2.jpg",
-    "/images/4hour-after3.jpg",
   ]
 
   const handleSubmit = async (e: React.FormEvent) => {
