@@ -84,10 +84,10 @@ export default function ProductPage() {
             <div className="h-px bg-neutral-200" />
 
             <p className="text-neutral-600 leading-relaxed">
-              A LIMITED EDITION rebound of <strong>Atomic Habits</strong>, restored in matte black lambskin leather with minimalist gold accents and gold-gilded page edges.
-              Each book is gift-wrapped in our signature aesthetic style. 
-              Designed for those building intentional routines and reshaping identity through action. This edition is meant to ground your space
-              and support your growth — one small habit at a time.
+              This handcrafted lambskin leather-bound edition of <strong>Atomic Habits</strong>,by James Clear is a collector’s book gift for personal growth
+              and habit building designed for entrepreneurs, students and goal setters seeking intentional living through small daily actions 
+              This edition includes a simple habit tracker and a few hidden resources  to enrich the reading experience.
+
             </p>
 
             <div className="h-px bg-neutral-200" />
@@ -100,7 +100,7 @@ export default function ProductPage() {
             </Button>
 
             <p className="text-sm text-neutral-500 italic mt-4">
-              Please allow 9–12 business days before shipping.
+              Please allow 9–12 business days before shipping. Free US shipping.
             </p>
 
             {/* Contact Section */}
