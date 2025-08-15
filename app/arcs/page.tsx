@@ -68,7 +68,7 @@ const pathname = usePathname ();
             {books.slice(0, 4).map((book) => (
   <Link
     key={book.id}
-    href={`/books/${book.title.toLowerCase().replaceAll(" ", "-")}`}
+    href={`/books/${book.slug}`}
     className="block border border-gray-200 rounded-lg overflow-hidden group hover:shadow-md transition"
   >
     <div className="relative h-64 bg-white flex items-center justify-center">

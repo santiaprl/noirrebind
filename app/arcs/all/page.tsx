@@ -18,7 +18,7 @@ export default function AllBooksPage() {
               return (
                 <Link
   key={book.id}
-  href={`/books/${book.title.toLowerCase().replaceAll(" ", "-")}`}
+  href={`/books/${book.slug}`}
   className="block border border-gray-200 rounded-lg overflow-hidden group hover:shadow-md transition-all"
 >
   <div className="relative h-[345px] bg-white flex items-center justify-center">
