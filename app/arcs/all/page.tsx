@@ -21,12 +21,12 @@ export default function AllBooksPage() {
   href={`/books/${book.slug}`}
   className="block border border-gray-200 rounded-lg overflow-hidden group hover:shadow-md transition-all"
 >
-  <div className="relative h-[345px] bg-white flex items-center justify-center">
+  <div className="relative aspect-[3/4] bg-white flex items-center justify-center">
     <Image
       src={`/images/${book.image?.trim()}`}
       alt={book.title}
       fill
-      className="object-contain"
+      className="object-cover"
     />
     <div
       className="absolute top-0 right-0 px-3 py-1 text-xs text-white"
