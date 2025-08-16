@@ -83,7 +83,11 @@ export default function ProductPage() {
             <div className="h-px bg-neutral-200" />
 
             <p className="text-neutral-600 leading-relaxed">
-              A luxury rebound of <strong>The Daily Stoic</strong>, handcrafted in matte lambskin leather and detailed with minimalist gold foil symbols representing the four Stoic virtues — wisdom, justice, courage, and temperance. The page edges are sanded for a raw, natural texture. Gift-wrapped in our signature aesthetic style, this edition invites quiet strength and steady growth — one page at a time, one virtue at a time.
+              A luxury rebound of <strong>The Daily Stoic</strong>, handcrafted in matte lambskin leather 
+              and detailed with minimalist gold foil symbols representing the four Stoic virtues — wisdom, 
+              justice, courage, and temperance.The page edges are sanded for a raw, natural texture. 
+              Gift-wrapped in our signature aesthetic style, this edition invites quiet strength
+              and steady growth — one page at a time, one virtue at a time.
             </p>
 
             <div className="h-px bg-neutral-200" />
@@ -96,7 +100,7 @@ export default function ProductPage() {
             </Button>
 
             <p className="text-sm text-neutral-500 italic mt-4">
-              Please allow 9–12 business days before shipping.
+              Please allow 9–12 business days before shipping. Free U.S shipping
             </p>
 
             {!isSubmitted ? (

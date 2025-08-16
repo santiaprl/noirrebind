@@ -26,7 +26,7 @@ export default function AllBooksPage() {
       src={`/images/${book.image?.trim()}`}
       alt={book.title}
       fill
-      className="object-fill"
+      className="object-contain"
     />
     <div
       className="absolute top-0 right-0 px-3 py-1 text-xs text-white"
