@@ -198,7 +198,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                 {isSubmitting ? "Submitting..." : "Submit Request"}
               </Button>
               <p className="text-sm text-gray-500 mt-4">
-                You’ll receive a follow-up email within 1–2 business days with your quote and next steps.
+                You’ll receive a follow-up email within 3–4 business days with your quote and next steps.
               </p>
             </div>
           </form>
