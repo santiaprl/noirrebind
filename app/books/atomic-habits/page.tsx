@@ -78,7 +78,7 @@ export default function ProductPage() {
           <div className="flex flex-col space-y-8">
             <div className="space-y-2">
               <h1 className="text-3xl md:text-4xl font-light tracking-tight">Atomic Habits</h1>
-              <p className="text-2xl font-light">$130.00</p>
+              <p className="text-2xl font-light">$150.00</p>
             </div>
 
             <div className="h-px bg-neutral-200" />
