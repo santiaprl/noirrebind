@@ -1,12 +1,14 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { ChevronDown, MessageCircle, Filter, BookOpen, Sparkles } from "lucide-react"
 import { AnimatePresence, motion } from "framer-motion"
+const STRIPE_HANDWRITTEN_LETTER_LINK = "https://buy.stripe.com/REPLACE_ME"
+const FORMSPREE_BOOK_SUGGESTION_ACTION = "https://formspree.io/f/REPLACE_ME"
 type QuizAnswer = {
   text: string
   arc: number
@@ -126,16 +128,27 @@ export default function CommunityPage() {
   const [selectedArc, setSelectedArc] = useState("")
   const [showResult, setShowResult] = useState(false)
   const [resultArc, setResultArc] = useState<number | null>(null)
+   const [bookSuggestion, setBookSuggestion] = useState("")
+  const [email, setEmail] = useState("")
+  const quizRef = useRef<HTMLDivElement | null>(null)
+  const scrollToQuiz = () => {
+    quizRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+  }
+  const openStripeLetter = () => {
+    window.open(STRIPE_HANDWRITTEN_LETTER_LINK, "_blank", "noopener,noreferrer")
+  }
   const [filterBy, setFilterBy] = useState("all")
   const [sortBy, setSortBy] = useState("recent")
   const [showFilters, setShowFilters] = useState(false)
+
 
 
   // Quiz state
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [answers, setAnswers] = useState<(number | null)[]>(Array(quizQuestions.length).fill(null))
   const [shuffledQuestions, setShuffledQuestions] = useState<QuizQuestion[]>([])
-  const [quizComplete, setQuizComplete] = useState(false)
+ const [quizComplete, setQuizComplete] = useState(false) 
+ const [showQuiz, setShowQuiz] = useState(false)
 
   // Shuffle answers for each question on component mount
   useEffect(() => {
@@ -207,16 +220,87 @@ export default function CommunityPage() {
   const progressPercentage = (currentQuestion / quizQuestions.length) * 100
 
   return (
-    <div className="bg-white">
+    <div className="min-h-screen bg-[#49111C]">
       <div className="container mx-auto py-2  px-2">
-          <div className="mt-8">
-            <div className="bg-gray-50 rounded-lg p-8">
-              <h2 className="font-serif text-4xl md:text-5xl font-light mb-8 text-center">Community</h2>
-              <p className="text-center text-gray-700 mb-8 max-w-2X1 mx-auto">
-               Your journey is personal. This quiz helps you find the emotional arc that resonates most right now. 
+          <div className="mt-10">
+            <div className="bg-white rounded-lg p-8 border border-[#49111C]/10 shadow-sm">
+              <h2 className="font-serif text-4xl md:text-5xl font-light mb-8 text-center text-[#49111C]">The Studio</h2>
+              <p className="text-center text-gray-700 mb-4 max-w-2X1 mx-auto">
+               Your next chapter starts here
               </p>
 
-              <div className="max-w-2xl mx-auto">
+{/* Book suggestion */}
+<div className="max-w-2xl mx-auto mb-10">
+  <div className="bg-white p-8 rounded-lg shadow-sm border border-[#49111C]/10">
+    <h3 className="text-xl font-medium mb-2 text-center text-[#49111C]">Book suggestion</h3>
+    <p className="text-center text-gray-600 text-sm mb-6">
+      What book should enter the studio next?
+    </p>
+
+    <form action={FORMSPREE_BOOK_SUGGESTION_ACTION} method="POST" className="space-y-4">
+      <Input
+        type="email"
+        name="email"
+        placeholder="Email (optional)"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        className="border-[#49111C]/20 focus-visible:ring-[#49111C]/20"
+      />
+
+      <Textarea
+        name="bookSuggestion"
+        placeholder='You’re welcome to suggest a book you love'
+        value={bookSuggestion}
+        onChange={(e) => setBookSuggestion(e.target.value)}
+        className="min-h-[110px] border-[#49111C]/20 focus-visible:ring-[#49111C]/20"
+        required
+      />
+
+      {/* Submit button at the bottom */}
+      <Button
+        type="submit"
+        className=" w-full border border-[#4A1F2A] text-[#4A1F2A] bg-transparent hover:bg-[#4A1F2A]/10 hover:border-[#4A1F2A] hover:text-[#4A1F2A] transition duration-200 rounded-md "
+      >
+        Submit suggestion
+      </Button>
+
+      {/* Secondary actions below (harmonic + clean labels) */}
+      <div className="flex flex-col gap-3 pt-2">
+            <Button
+  type="button"
+  onClick={() => {
+    setShowQuiz(true)
+    setTimeout(scrollToQuiz, 250)
+  }}
+  variant="default"
+ className="w-full py-6 text-base text-white bg-[#A24E3F] hover:bg-[#7a0b0f] transition-all shadow-sm hover:shadow-md"
+
+
+>
+  Let me recommend a book
+</Button>
+
+        <Button
+          type="button"
+          onClick={openStripeLetter}
+          variant="outline"
+          className="w-full py-6 text-base text-white bg-[#C07A63] hover:bg-[#e5a88b] transition-all shadow-sm hover:shadow-md"
+        >
+          Receive a handwritten letter
+        </Button>
+      </div>
+    </form>
+  </div>
+</div>
+              {showQuiz && (
+  <motion.div
+    id="arc-quiz"
+    ref={quizRef}
+    initial={{ opacity: 0, y: -10, height: 0 }}
+    animate={{ opacity: 1, y: 0, height: "auto" }}
+    transition={{ duration: 0.45, ease: "easeOut" }}
+    className="max-w-2xl mx-auto overflow-hidden"
+  >
                 {!quizComplete ? (
                   <div>
                     {/* Progress bar */}
@@ -327,7 +411,8 @@ export default function CommunityPage() {
 </AnimatePresence>
 
                 )}
-              </div>
+               </motion.div>
+)}
             </div>
           </div>
         
