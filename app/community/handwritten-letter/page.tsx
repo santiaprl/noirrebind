@@ -13,7 +13,7 @@ export default function HandwrittenLetterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#4A1F2A]">
+    <div className="min-h-screen bg-[#34161e]">
       <div className="container mx-auto px-4 py-10">
         <div className="mx-auto max-w-5xl overflow-hidden rounded-2xl bg-white shadow-sm border border-white/10">
           {/* HERO */}
@@ -24,12 +24,10 @@ export default function HandwrittenLetterPage() {
                   A handwritten letter, just for you
                 </h1>
                 <p className="mt-4 text-white/80 text-base md:text-lg">
-                  In a world that moves too quickly, this is a moment meant to slow you down.
-                  A quiet pause. A soft breath. A note written with intention.
+                  In a world that moves too quickly, sometimes it's essential to stop and savor a moment of stillness. 
                 </p>
                 <p className="mt-4 text-white/75">
-                  Every letter is handwritten — not printed, not automated — a small keepsake crafted
-                  in the same spirit as the books I restore and the stories I honor.
+                  This is an invitation to sit in stillness with me. Each month, I’ll send you a handwritten letter, a small moment of reflection and intention, delivered to your home.
                 </p>
 
                 <div className="mt-8">
@@ -89,16 +87,16 @@ export default function HandwrittenLetterPage() {
 
                 <h2 className="mt-10 font-serif text-2xl md:text-3xl font-light">Why I write them</h2>
                 <p className="mt-4 text-white/80">
-                  Noir Rebind has always been about more than books — it’s about connection,
+                  Noir Rebind has always been about more than books: it’s about connection,
                   memory, and the quiet beauty of things made by hand. This letter is an extension
-                  of that philosophy: a tiny artifact of stillness in your day.
+                  of that philosophy.
                 </p>
 
                 <h2 className="mt-10 font-serif text-2xl md:text-3xl font-light">How it works</h2>
                 <ol className="mt-4 space-y-2 text-white/80 list-decimal list-inside">
                   <li>You request a letter</li>
                   <li>I write it by hand</li>
-                  <li>You receive it digitally (a scan) or physically, depending on what you choose</li>
+                  <li>Once a month, it’s delivered to your home.</li>
                 </ol>
               </div>
             </div>

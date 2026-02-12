@@ -284,7 +284,7 @@ export default function CommunityPage() {
           type="button"
           onClick={openStripeLetter}
           variant="outline"
-          className="w-full py-6 text-base text-white bg-[#C07A63] hover:bg-[#e5a88b] transition-all shadow-sm hover:shadow-md"
+          className="w-full py-6 text-base text-white bg-[#8e3c51] hover:bg-[#4A1F2A] transition-all shadow-sm hover:shadow-md"
         >
           Receive a handwritten letter
         </Button>
