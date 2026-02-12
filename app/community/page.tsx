@@ -220,10 +220,10 @@ export default function CommunityPage() {
   const progressPercentage = (currentQuestion / quizQuestions.length) * 100
 
   return (
-    <div className="min-h-screen bg-[#49111C]">
+    <div className="min-h-screen bg-[#7F1F0E]">
       <div className="container mx-auto py-2  px-2">
           <div className="mt-10">
-            <div className="bg-white rounded-lg p-8 border border-[#49111C]/10 shadow-sm">
+            <div className="bg-[#F0DED0] rounded-lg p-8 border border-[#49111C]/10 shadow-sm">
               <h2 className="font-serif text-4xl md:text-5xl font-light mb-8 text-center text-[#49111C]">The Studio</h2>
               <p className="text-center text-gray-700 mb-4 max-w-2X1 mx-auto">
                Your next chapter starts here
@@ -231,7 +231,7 @@ export default function CommunityPage() {
 
 {/* Book suggestion */}
 <div className="max-w-2xl mx-auto mb-10">
-  <div className="bg-white p-8 rounded-lg shadow-sm border border-[#49111C]/10">
+  <div className="bg-[#F0DED0] p-8 rounded-lg shadow-sm border border-[#49111C]/10">
     <h3 className="text-xl font-medium mb-2 text-center text-[#49111C]">Book suggestion</h3>
     <p className="text-center text-gray-600 text-sm mb-6">
       What book should enter the studio next?
@@ -244,7 +244,7 @@ export default function CommunityPage() {
         placeholder="Email (optional)"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        className="border-[#49111C]/20 focus-visible:ring-[#49111C]/20"
+        className="border-[#7F1F0E]/20 focus-visible:ring-[#7F1F0E]"
       />
 
       <Textarea
