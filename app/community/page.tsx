@@ -1,13 +1,12 @@
 "use client"
 import Link from "next/link"
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, type FormEvent } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { ChevronDown, MessageCircle, Filter, BookOpen, Sparkles } from "lucide-react"
 import { AnimatePresence, motion } from "framer-motion"
-const STRIPE_HANDWRITTEN_LETTER_LINK = "https://buy.stripe.com/REPLACE_ME"
 const FORMSPREE_BOOK_SUGGESTION_ACTION = "https://formspree.io/f/xqedpdbe"
 type QuizAnswer = {
   text: string
@@ -137,9 +136,7 @@ const [submitMessage, setSubmitMessage] = useState("")
   const scrollToQuiz = () => {
     quizRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
   }
-  const openStripeLetter = () => {
-    window.open(STRIPE_HANDWRITTEN_LETTER_LINK, "_blank", "noopener,noreferrer")
-  }
+  
   const [filterBy, setFilterBy] = useState("all")
   const [sortBy, setSortBy] = useState("recent")
   const [showFilters, setShowFilters] = useState(false)
@@ -221,7 +218,8 @@ const [submitMessage, setSubmitMessage] = useState("")
 
   // Calculate progress percentage for the progress bar
   const progressPercentage = (currentQuestion / quizQuestions.length) * 100
-async function handleBookSuggestionSubmit(e: React.FormEvent<HTMLFormElement>) {
+async function handleBookSuggestionSubmit(e: FormEvent<HTMLFormElement>) {
+  console.log("SUBMIT HANDLER RAN")
   e.preventDefault()
 
   setIsSubmitting(true)
@@ -275,7 +273,12 @@ async function handleBookSuggestionSubmit(e: React.FormEvent<HTMLFormElement>) {
       What book should enter the studio next?
     </p>
 
-    <form onSubmit={handleBookSuggestionSubmit} className="space-y-4">
+    <form
+  action={FORMSPREE_BOOK_SUGGESTION_ACTION}
+  method="POST"
+  onSubmit={handleBookSuggestionSubmit}
+  className="space-y-4"
+>
       <Input
         type="email"
         name="email"
@@ -325,13 +328,8 @@ async function handleBookSuggestionSubmit(e: React.FormEvent<HTMLFormElement>) {
   Let me recommend a book
 </Button>
 
-        <Button
-          type="button"
-          onClick={openStripeLetter}
-          variant="outline"
-          className="w-full py-6 text-base text-white bg-[#8e3c51] hover:bg-[#4A1F2A] transition-all shadow-sm hover:shadow-md"
-        >
-         <Link href="/community/handwritten-letter">
+        <Button asChild className="w-full py-6 text-base text-white bg-[#8e3c51] hover:bg-[#4A1F2A] transition-all shadow-sm hover:shadow-md">
+  <Link href="/community/handwritten-letter">
     Receive a handwritten letter
   </Link>
 </Button>
