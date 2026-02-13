@@ -4,7 +4,7 @@
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 
-const STRIPE_HANDWRITTEN_LETTER_LINK = "https://buy.stripe.com/REPLACE_ME"
+const STRIPE_HANDWRITTEN_LETTER_LINK = "https://buy.stripe.com/6oUaEX2lN9hheol1Wo1Jm0n"
 const OVERLAY_COLOR = "#4A1F2A"
 
 export default function HandwrittenLetterPage() {
