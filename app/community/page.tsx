@@ -1,5 +1,5 @@
 "use client"
-
+import Link from "next/link"
 import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { ChevronDown, MessageCircle, Filter, BookOpen, Sparkles } from "lucide-react"
 import { AnimatePresence, motion } from "framer-motion"
 const STRIPE_HANDWRITTEN_LETTER_LINK = "https://buy.stripe.com/REPLACE_ME"
-const FORMSPREE_BOOK_SUGGESTION_ACTION = "https://formspree.io/f/REPLACE_ME"
+const FORMSPREE_BOOK_SUGGESTION_ACTION = "https://formspree.io/f/xqedpdbe"
 type QuizAnswer = {
   text: string
   arc: number
@@ -130,6 +130,9 @@ export default function CommunityPage() {
   const [resultArc, setResultArc] = useState<number | null>(null)
    const [bookSuggestion, setBookSuggestion] = useState("")
   const [email, setEmail] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false)
+const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
+const [submitMessage, setSubmitMessage] = useState("")
   const quizRef = useRef<HTMLDivElement | null>(null)
   const scrollToQuiz = () => {
     quizRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
@@ -218,6 +221,41 @@ export default function CommunityPage() {
 
   // Calculate progress percentage for the progress bar
   const progressPercentage = (currentQuestion / quizQuestions.length) * 100
+async function handleBookSuggestionSubmit(e: React.FormEvent<HTMLFormElement>) {
+  e.preventDefault()
+
+  setIsSubmitting(true)
+  setSubmitStatus("idle")
+  setSubmitMessage("")
+
+  try {
+    const formData = new FormData()
+    if (email.trim()) formData.append("email", email.trim())
+    formData.append("bookSuggestion", bookSuggestion.trim())
+
+    const res = await fetch(FORMSPREE_BOOK_SUGGESTION_ACTION, {
+      method: "POST",
+      body: formData,
+      headers: { Accept: "application/json" },
+    })
+
+    if (res.ok) {
+      setEmail("")
+      setBookSuggestion("")
+      setSubmitStatus("success")
+      setSubmitMessage("Submitted. Thank you 💌")
+      return
+    }
+
+    setSubmitStatus("error")
+    setSubmitMessage("Something went wrong. Please try again.")
+  } catch {
+    setSubmitStatus("error")
+    setSubmitMessage("Network error. Please try again.")
+  } finally {
+    setIsSubmitting(false)
+  }
+}
 
   return (
     <div className="min-h-screen bg-[#7F1F0E]">
@@ -237,7 +275,7 @@ export default function CommunityPage() {
       What book should enter the studio next?
     </p>
 
-    <form action={FORMSPREE_BOOK_SUGGESTION_ACTION} method="POST" className="space-y-4">
+    <form onSubmit={handleBookSuggestionSubmit} className="space-y-4">
       <Input
         type="email"
         name="email"
@@ -258,11 +296,18 @@ export default function CommunityPage() {
 
       {/* Submit button at the bottom */}
       <Button
-        type="submit"
-        className=" w-full border border-[#4A1F2A] text-[#4A1F2A] bg-transparent hover:bg-[#4A1F2A]/10 hover:border-[#4A1F2A] hover:text-[#4A1F2A] transition duration-200 rounded-md "
-      >
-        Submit suggestion
-      </Button>
+  type="submit"
+  disabled={isSubmitting}
+  className="w-full border border-[#4A1F2A] text-[#4A1F2A] bg-transparent hover:bg-[#4A1F2A]/10 hover:border-[#4A1F2A] hover:text-[#4A1F2A] transition duration-200 rounded-md"
+>
+  {isSubmitting ? "Submitting..." : "Submit suggestion"}
+</Button>
+
+      {submitStatus !== "idle" && (
+  <p className={`text-sm text-center ${submitStatus === "success" ? "text-green-700" : "text-red-700"}`}>
+    {submitMessage}
+  </p>
+)}
 
       {/* Secondary actions below (harmonic + clean labels) */}
       <div className="flex flex-col gap-3 pt-2">
@@ -286,8 +331,10 @@ export default function CommunityPage() {
           variant="outline"
           className="w-full py-6 text-base text-white bg-[#8e3c51] hover:bg-[#4A1F2A] transition-all shadow-sm hover:shadow-md"
         >
-          Receive a handwritten letter
-        </Button>
+         <Link href="/community/handwritten-letter">
+    Receive a handwritten letter
+  </Link>
+</Button>
       </div>
     </form>
   </div>
