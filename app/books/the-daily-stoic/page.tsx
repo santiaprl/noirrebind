@@ -1,153 +1,188 @@
-"use client"
-
 import Image from "next/image"
-import { useKeenSlider } from "keen-slider/react"
-import "keen-slider/keen-slider.min.css"
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
-export default function ProductPage() {
-  const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({ loop: true })
+const images = [
+  {
+    src: "/images/Daily_Stoic_Large.jpeg",
+    alt: "The Daily Stoic handcrafted black leather edition",
+    position: "object-center",
+  },
+  {
+    src: "/images/daily/daily2.jpg",
+    alt: "Gold-lettered spine of The Daily Stoic edition",
+    position: "object-center",
+  },
+  {
+    src: "/images/daily/daily3.jpg",
+    alt: "Page edges and ribbon detail of The Daily Stoic edition",
+    position: "object-center",
+  },
+]
 
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const [isSubmitted, setIsSubmitted] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-
-  const images = [
-    "/images/Daily_Stoic_Large.jpeg",
-    "/images/daily/daily2.jpg",
-    "/images/daily/daily3.jpg",
-  ]
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-
-    const form = e.target as HTMLFormElement
-    const formData = new FormData(form)
-
-    await fetch("https://formspree.io/f/mdkgyqyo", {
-      method: "POST",
-      body: formData,
-      headers: {
-        Accept: "application/json",
-      },
-    })
-
-    setIsSubmitting(false)
-    setIsSubmitted(true)
-  }
-
+export default function DailyStoicPage() {
   return (
-    <div className="min-h-screen bg-white">
-      <main className="container mx-auto px-4 py-12 md:py-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-          {/* Image Slider */}
-          <div className="relative">
-            <div ref={sliderRef} className="keen-slider aspect-square bg-neutral-50 rounded-lg overflow-hidden">
-              {images.map((src, index) => (
-                <div key={index} className="keen-slider__slide flex justify-center items-center">
-                  <Image
-                    src={src}
-                    alt={`Slide ${index + 1}`}
-                    width={500}
-                    height={500}
-                    className="object-contain"
-                  />
-                </div>
-              ))}
-            </div>
-           {/* Left arrow */}
-       <button
-          onClick={() => instanceRef.current?.prev()}
-            className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white text-black rounded-full shadow-md flex items-center justify-center w-10 h-10 sm:w-8 sm:h-8"
-              >
-                ←
-              </button>
-              {/* Right arrow */}
-              <button
-                onClick={() => instanceRef.current?.next()}
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white text-black rounded-full shadow-md flex items-center justify-center w-10 h-10 sm:w-8 sm:h-8"
-              >
-                →
-              </button>
-          </div>
-
-          {/* Product Details */}
-          <div className="flex flex-col space-y-8">
-            <div className="space-y-2">
-              <h1 className="text-3xl md:text-4xl font-light tracking-tight">The Daily Stoic</h1>
-              <p className="text-2xl font-light">$150.00</p>
-            </div>
-
-            <div className="h-px bg-neutral-200" />
-
-            <p className="text-neutral-600 leading-relaxed">
-              A luxury rebound of <strong>The Daily Stoic</strong>, handcrafted in matte lambskin leather 
-              and detailed with minimalist gold foil symbols representing the four Stoic virtues — wisdom, 
-              justice, courage, and temperance.The page edges are sanded for a raw, natural texture. 
-              Gift-wrapped in our signature aesthetic style, this edition invites quiet strength
-              and steady growth — one page at a time, one virtue at a time.
-            </p>
-
-            <div className="h-px bg-neutral-200" />
-
-            <Button
-              className="w-full md:w-auto bg-black hover:bg-neutral-800 text-white rounded-none py-6 text-base"
-              onClick={() => window.open("https://buy.stripe.com/3cI28r4tV2ST6VT30s1Jm0h", "_blank")}
+    <main className="min-h-screen bg-[#D3D3D0] text-[#181816]">
+      <div className="mx-auto grid max-w-[1600px] gap-1 px-2 py-2 lg:grid-cols-[minmax(0,2fr)_minmax(340px,0.78fr)]">
+        {/* Product gallery */}
+        <section className="grid gap-1 sm:grid-cols-2">
+          {images.map((image, index) => (
+            <div
+              key={image.src}
+              className="relative aspect-[3/4] overflow-hidden bg-[#C9C9C6]"
             >
-              Buy Now
-            </Button>
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                priority={index < 2}
+                className={`object-cover ${image.position} transition-transform duration-1000 ease-out hover:scale-[1.015]`}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 36vw"
+              />
+            </div>
+          ))}
 
-            <p className="text-sm text-neutral-500 italic mt-4">
-              Please allow 9–12 business days before shipping. Free U.S shipping
+          
+        </section>
+
+        {/* Product information */}
+        <aside className="bg-[#F3F0E9] px-7 py-10 sm:px-10 lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto lg:px-12 lg:py-14">
+          <Link
+            href="/books/stoiccollection"
+            className="text-[8px] uppercase tracking-[0.27em] text-[#77736D] transition-colors hover:text-black"
+          >
+            ← The Stoic Collection
+          </Link>
+
+          <p className="mt-10 text-[8px] uppercase tracking-[0.3em] text-[#9A7338]">
+            Companion Edition · No. IV
+          </p>
+
+          <h1 className="mt-5 font-serif text-4xl font-light tracking-[-0.035em] sm:text-5xl">
+            The Daily Stoic
+          </h1>
+
+          <p className="mt-2 font-serif text-sm italic text-[#6D6861]">
+            Ryan Holiday and Stephen Hanselman
+          </p>
+
+          <p className="mt-5 font-serif text-lg">$200 USD</p>
+
+          <div className="my-8 h-px bg-[#CEC7BC]" />
+
+          <p className="text-sm font-light leading-7 text-[#69645D]">
+            A handcrafted companion for daily reflection, preserving the
+            enduring ideas of Stoicism in an edition designed to be opened,
+            considered, and returned to each day.
+          </p>
+
+          {/* Materials */}
+          <dl className="mt-9 space-y-5 border-y border-[#CEC7BC] py-7">
+            <div className="flex items-center justify-between gap-6">
+              <dt className="text-[8px] uppercase tracking-[0.25em] text-[#77726B]">
+                Leather
+              </dt>
+
+              <dd className="text-xs">Matte black</dd>
+            </div>
+
+            <div className="flex items-center justify-between gap-6">
+              <dt className="text-[8px] uppercase tracking-[0.25em] text-[#77726B]">
+                Detail
+              </dt>
+
+              <dd className="text-xs">Gold and silver</dd>
+            </div>
+
+            <div className="flex items-center justify-between gap-6">
+              <dt className="text-[8px] uppercase tracking-[0.25em] text-[#77726B]">
+                Binding
+              </dt>
+
+              <dd className="text-xs">Rebound by hand</dd>
+            </div>
+          </dl>
+
+          {/* Availability */}
+          <div className="mt-8">
+            <p className="text-[8px] uppercase tracking-[0.25em] text-[#77726B]">
+              Current status
             </p>
 
-            {!isSubmitted ? (
-              <>
-                <div className="mt-8 space-y-4">
-                  <p className="text-base text-neutral-600">
-                    <strong>Have a question about this edition?</strong><br />
-                    Use the form below to reach out — I'm happy to help.
-                  </p>
-                </div>
-
-                <form onSubmit={handleSubmit} className="mt-6 space-y-4">
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Your email"
-                    required
-                    className="w-full border border-neutral-300 rounded px-4 py-2"
-                  />
-                  <textarea
-                    name="message"
-                    placeholder="Your message"
-                    rows={4}
-                    required
-                    className="w-full border border-neutral-300 rounded px-4 py-2"
-                  />
-                  <button
-                    type="submit"
-                    className="bg-black text-white px-6 py-3 hover:bg-neutral-800"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? "Sending..." : "Send Message"}
-                  </button>
-                </form>
-              </>
-            ) : (
-              <div className="text-center py-12 space-y-4 border border-neutral-200 rounded p-6">
-                <h2 className="text-2xl font-serif mb-4">Thank You!</h2>
-                <p className="text-neutral-700 mb-6">We've received your message and will be in touch soon.</p>
-                <a href="/" className="bg-black text-white px-6 py-3 hover:bg-neutral-800 inline-block">
-                  Return to Homepage
-                </a>
-              </div>
-            )}
+            <p className="mt-4 text-[10px] uppercase tracking-[0.24em]">
+              Available to order
+            </p>
           </div>
-        </div>
-      </main>
-    </div>
+
+          {/* Future integrated cart button */}
+          <button
+            type="button"
+            className="mt-8 w-full border border-[#242422] bg-[#242422] px-6 py-5 text-[9px] uppercase tracking-[0.25em] text-white transition-colors duration-300 hover:bg-black"
+          >
+            Add to Cart
+          </button>
+
+          <p className="mt-4 text-center text-[9px] font-light text-[#8A857E]">
+            Please allow 9–12 business days before shipping.
+          </p>
+
+          {/* Additional information */}
+          <div className="mt-10 border-t border-[#CEC7BC]">
+            <details className="group border-b border-[#CEC7BC] py-6">
+              <summary className="flex cursor-pointer list-none items-center justify-between text-[9px] uppercase tracking-[0.24em]">
+                Edition details
+
+                <span className="text-sm font-light transition-transform group-open:rotate-45">
+                  +
+                </span>
+              </summary>
+
+              <p className="mt-5 text-xs font-light leading-6 text-[#706B64]">
+                Hand-bound in matte black leather and finished with symbols
+                representing wisdom, justice, courage, and temperance. The
+                edition includes a ribbon marker and hand-finished page edges.
+              </p>
+            </details>
+
+            <details className="group border-b border-[#CEC7BC] py-6">
+              <summary className="flex cursor-pointer list-none items-center justify-between text-[9px] uppercase tracking-[0.24em]">
+                Production and delivery
+
+                <span className="text-sm font-light transition-transform group-open:rotate-45">
+                  +
+                </span>
+              </summary>
+
+              <p className="mt-5 text-xs font-light leading-6 text-[#706B64]">
+                Every edition is completed by hand. Small variations in the
+                leather grain, tooling, and finish are part of its individual
+                character.
+              </p>
+            </details>
+
+            <details className="group border-b border-[#CEC7BC] py-6">
+              <summary className="flex cursor-pointer list-none items-center justify-between text-[9px] uppercase tracking-[0.24em]">
+                Ask about this edition
+
+                <span className="text-sm font-light transition-transform group-open:rotate-45">
+                  +
+                </span>
+              </summary>
+
+              <p className="mt-5 text-xs font-light leading-6 text-[#706B64]">
+                Questions about availability or this edition can be sent
+                directly through the Noir Rebind contact page.
+              </p>
+
+              <Link
+                href="/contact"
+                className="mt-5 inline-flex border-b border-[#181816] pb-1 text-[8px] uppercase tracking-[0.22em]"
+              >
+                Contact the studio →
+              </Link>
+            </details>
+          </div>
+        </aside>
+      </div>
+    </main>
   )
 }

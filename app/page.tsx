@@ -4,166 +4,323 @@ import Link from "next/link"
 export default function Home() {
   return (
     <div>
-      {/* Hero Section */}
-      <section className="relative h-[90vh] w-full flex items-center justify-center bg-blush text-charcoal">
-        <div className="relative z-10 text-center px-4 max-w-3xl mx-auto text-charcoal">
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light tracking-tight mb-4">
-            We Rebind Books by Hand
-          </h1>
-          <p className="font-sans text-lg md:text-xl mb-8 font-light">
-            Modern leather rebinding and restoration<br className= "hidden md;inline" /> for books that changed you.
-          </p>
+     {/* Hero Section */}
+<section className="relative flex min-h-[90vh] w-full items-center justify-center overflow-hidden bg-[#F8F5EF] px-6 py-24 text-[#171512]">
+  
 
-          <p className="font-sans text-base md:text-lg mb-8">
-          Choose your path: curated emotional arcs,<br className="hidden md:inline" /> custom rebinding or a restoration for a book you can't let go of.
-          </p>
+  <div className="hero-reveal relative z-10 mx-auto max-w-5xl text-center">
+    <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.32em] text-[#A77B2F] md:text-xs">
+      Noir Rebind · Handcrafted Editions
+    </p>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
-            <Link
-              href="/arcs/all"
-              className="inline-block px-8 py-3 bg-white text-black text-sm font-medium hover:bg-gray-200 transition-colors duration-300"
-            >
-              View All Books
-            </Link>
-            <Link
-              href="/start-your-rebind"
-              className="inline-block px-8 py-3 border border-white text-white text-sm font-medium hover:bg-white hover:text-black transition-colors duration-300"
-            >
-              Custom Request
-            </Link>
-            </div>
-            <p className="text-center text-grey italic mt-10 text-sm">
-              Enjoy free U.S shipping, exclusively through our site.
-            </p>
-        </div>
-      </section>
+    <h1 className="font-serif text-5xl font-light leading-[0.95] tracking-[-0.04em] sm:text-6xl md:text-7xl lg:text-8xl">
+      We Rebind Books
+      <span className="block italic">by Hand.</span>
+    </h1>
+
+    <p className="mx-auto mt-8 max-w-2xl font-serif text-lg font-light leading-relaxed text-[#39352F] md:text-2xl">
+      Handcrafted leather editions for readers, collectors, and the books
+      that deserve a second life.
+    </p>
+
+    <p className="mx-auto mt-5 max-w-xl text-sm font-light leading-7 text-[#6B665D] md:text-base">
+      Explore our collection, or create an
+      edition of your own.
+    </p>
+
+    <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+      <Link
+        href="/arcs/all"
+        className="inline-flex min-h-[48px] min-w-[220px] items-center justify-center border border-[#171512] bg-[#171512] px-8 text-xs font-medium uppercase tracking-[0.14em] text-white transition-all duration-500 hover:bg-transparent hover:text-[#171512]"
+      >
+        Explore the Library
+      </Link>
+
+      <Link
+        href="/start-your-rebind"
+        className="inline-flex min-h-[48px] min-w-[220px] items-center justify-center border border-[#171512] bg-transparent px-8 text-xs font-medium uppercase tracking-[0.14em] text-[#171512] transition-all duration-500 hover:bg-[#171512] hover:text-white"
+      >
+        Customize Your Edition
+      </Link>
+    </div>
+  </div>
+
+  
+</section>
       
       {/* Our Vision Section */}
-      <section className="bg-white text black py-20 px-4">
-        <div className="max-w-xl mx-auto text-center">
-          <h2 className="font-serif text-3xl md:text-4xl font-light mb-10">
-            Our Vision</h2>
-          <p className="text-center text-neutral-700 max-w-x1 mx-auto font-light tracking-wide leading-relaxed"> 
-            At Noir Rebind, we rebind books by hand- <br />
-            whether it's one that changed your life or <br />
-            one you want to give as a meaningful gift. 
-          </p>
-          <p className="text-center text-neutral-700 max-w-x1 mx-auto font-light tracking-wide leading-relaxed">
-            You can choose from our emotional arc collections<br />
-            or send in a personal favorite for a custom rebind </p>
-          <p className="text-center text-neutral-700 max-w-x1 mx-auto font-light tracking-wide leading-relaxed mb-4">
-            However it starts, every book here is given a second life with- </p>
-          <p className="font-bold text-lg md:text-xl leading-relaxed italic text-neutral-700">Care.  Meaning.  & Intention. </p>
-          
-        
+<section className="relative overflow-hidden bg-[#EFE9DF] px-6 py-28 text-[#171512] md:py-36">
+  <div
+  className="absolute left-1/2 top-0 flex -translate-x-1/2 flex-col items-center"
+  aria-hidden="true"
+>
+  <span className="-mt-1.5 h-3 w-3 rotate-45 border border-[#A77B2F]/60 bg-[#EFE9DF]" />
+  <span className="h-20 w-px bg-[#A77B2F]/50" />
+</div>
+
+  <div className="scroll-reveal mx-auto max-w-4xl text-center">
+    <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.32em] text-[#A77B2F] md:text-xs">
+      Our Vision
+    </p>
+
+    <h2 className="font-serif text-4xl font-light leading-tight tracking-[-0.03em] sm:text-5xl md:text-6xl">
+      A book worth preserving deserves
+      <span className="block italic">a form worthy of what it holds.</span>
+    </h2>
+
+    <div
+      className="mx-auto my-10 h-px w-12 bg-[#A77B2F]"
+      aria-hidden="true"
+    />
+
+    <div className="mx-auto max-w-2xl space-y-6 text-sm font-light leading-8 text-[#575148] md:text-base">
+      <p>
+        At Noir Rebind, we create handcrafted leather editions of books
+        worth preserving.
+      </p>
+
+      <p>
+        Whether drawn from philosophy, literature, or modern classics, each
+        volume is carefully rebound by hand to honor the ideas, stories, and
+        authors that continue to shape us.
+      </p>
+    </div>
+
+    <p className="mt-10 font-serif text-lg italic tracking-wide text-[#2E2A25] md:text-xl">
+      Built to be read. Crafted to endure.
+    </p>
+  </div>
+</section>
+
+      {/* The Stoics Collection Section */}
+<section className="border-t border-[#C8B99D]/30 bg-[#181612] px-6 py-28 text-[#F3EDE2] md:px-12 md:py-36">
+  <div className="scroll-reveal mx-auto max-w-[1500px]">
+    {/* Collection introduction */}
+    <div className="mb-14 flex flex-col gap-8 md:mb-16 md:flex-row md:items-end md:justify-between">
+      <div>
+        <p className="mb-5 text-[10px] font-medium uppercase tracking-[0.32em] text-[#B58A3A] md:text-xs">
+          The Stoic Collection
+        </p>
+
+        <h2 className="font-serif text-5xl font-light leading-[0.95] tracking-[-0.04em] sm:text-6xl md:text-7xl">
+          The Stoics.
+          <span className="block italic text-[#D8CFC0]">
+            Bound in leather.
+          </span>
+        </h2>
+      </div>
+
+      <p className="max-w-sm text-sm font-light leading-7 text-[#AAA397]">
+        Three enduring voices, reimagined as handcrafted editions made to be
+        read, revisited, and kept.
+      </p>
+    </div>
+
+    {/* Book grid */}
+    <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-6">
+      {/* Marcus Aurelius */}
+      <article className="group">
+        <div className="relative aspect-[3/4] overflow-hidden bg-[#24211C] p-3 ring-1 ring-white/10">
+          <Image
+            src="/images/stoics/marcus/marcus_cover.png"
+            alt="Meditations by Marcus Aurelius rebound in red leather"
+            fill
+            className="object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
+            sizes="(max-width: 768px) 100vw, 33vw"
+          />
         </div>
-      </section>
 
-      {/* Emotional Arc Intro Section */}
-      <section className="py-20 px-4 bg-[#F3F1EE] text-charcoal">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="font-serif text-3xl md:text-4xl font-light mb-8">The Four Arcs of Transformation</h2>
-          <p className="font-sans font-light text-lg md:text-xl leading-relaxed mb-6">
-            We created four emotional arcs to help match books
-            to your season of life-
-            <br />
-            Whether you're starting over, building habits, reconnecting, or creating a legacy.
-             <p className="font-sans text-lg md:text-xl leading-relaxed mb-6"></p>
-            Follow the arc that resonates, or just explore freely.
-          </p>
-          <div className="mt-10">
-            <Link
-              href="/arcs"
-              className="inline-block px-6 py-3 bg-black text-white text-sm font-medium hover:bg-gray-800 transition-colors duration-300"
-            >
-              Explore The Arcs
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Before & After Section */}
-      <section id="before-after" className="bg-white text black py-8 px-4">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="font-serif text-3xl md:text-4xl font-light mb-6 text-center">Before & After</h2>
-          <p className="font-sans text-lg md:text-xl text-center mb-16">
-            See how we transform the books that matter most.
-          </p>
-
-          {/* Image Pairs - Stacked Layout */}
-          <div className="space-y-8">
-            {/* First Row - The Daily Stoic */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 items-start justify-center text center">
-              <div className="space-y-2">
-                <p className="font-medium text-center">Before</p>
-                <div className="flex items-center justify-center h-[400px] bg-gray-50">
-                  <div className="relative w-[280px] h-[360px]  ">
-                    <Image
-                      src="/images/daily-stoic-before.png"
-                      alt="Before: The Daily Stoic original paperback"
-                      fill
-                      className="object-cover object-center"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="space-y-2">
-                <p className="font-medium text-center">After</p>
-                <div className="flex items-center justify-center h-[400px] bg-gray-50">
-                  <div className="relative w-[280px] h-[360px] overflow-hidden">
-                    <Image
-                      src="/images/daily-stoic-after.png"
-                      alt="After: The Daily Stoic leather-bound with gold symbols"
-                      fill
-                      className="object-cover object-center"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Second Row - Alchemist */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 items-start justify-center text center">
-              <div className="space-y-2">
-                <p className="font-medium text-center">Before</p>
-                <div className="flex items-center justify-center h-[400px] bg-gray-50">
-                  <div className="relative w-[280px] h-[360px] overflow-hidden">
-                    <Image
-                      src="/images/Alchemist/alchemist_before.jpeg"
-                      alt="Before: The Alchemist original cover"
-                      fill
-                      className="object-cover object-center scale-110"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="space-y-2">
-                <p className="font-medium text-center">After</p>
-                <div className="flex items-center justify-center h-[400px] bg-gray-50">
-                  <div className="relative w-[280px] h-[360px] overflow-hidden">
-                    <Image
-                      src="/images/Alchemist/alchemist_cover.jpeg"
-                      alt="After: The Alchemist cover after"
-                      fill
-                      className="object-cover object-center "
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div className="flex items-start justify-between px-5 py-5">
+          <div>
+            <h3 className="font-serif text-xl font-light">
+              Marcus Aurelius
+            </h3>
+            <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-[#8F887D]">
+              Meditations
+            </p>
           </div>
 
-          {/* CTA */}
-          <div className="text-center mt-16">
-            <Link
-              href="/start-your-rebind"
-              className="inline-flex items-center px-8 py-3 border border-black text-black text-sm font-medium hover:bg-black hover:text-white transition-colors duration-300"
-            >
-              Have a book of your own? Start Your Custom Rebind →
-            </Link>
+          <span className="text-[10px] tracking-[0.18em] text-[#B58A3A]">
+            01
+          </span>
+        </div>
+      </article>
+
+      {/* Seneca */}
+      <article className="group border-b border-r border-white/15">
+       <div className="relative aspect-[3/4] overflow-hidden bg-[#24211C] p-3 ring-1 ring-white/10">
+          <Image
+            src="/images/stoics/seneca/seneca.png"
+            alt="Seneca rebound in blue leather"
+            fill
+            className="object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
+            sizes="(max-width: 768px) 100vw, 33vw"
+          />
+        </div>
+
+        <div className="flex items-start justify-between px-5 py-5">
+          <div>
+            <h3 className="font-serif text-xl font-light">
+              Seneca
+            </h3>
+            <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-[#8F887D]">
+              Letters from a Stoic
+            </p>
+          </div>
+
+          <span className="text-[10px] tracking-[0.18em] text-[#B58A3A]">
+            02
+          </span>
+        </div>
+      </article>
+
+      {/* Epictetus */}
+      <article className="group border-b border-r border-white/15">
+<div className="relative aspect-[3/4] overflow-hidden bg-[#24211C] p-3 ring-1 ring-white/10">          <Image
+            src="/images/stoics/epictetus/epic_main.png"
+            alt="Discourses by Epictetus rebound in green leather"
+            fill
+            className="object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
+            sizes="(max-width: 768px) 100vw, 33vw"
+          />
+        </div>
+
+        <div className="flex items-start justify-between px-5 py-5">
+          <div>
+            <h3 className="font-serif text-xl font-light">
+              Epictetus
+            </h3>
+            <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-[#8F887D]">
+              Discourses
+            </p>
+          </div>
+
+          <span className="text-[10px] tracking-[0.18em] text-[#B58A3A]">
+            03
+          </span>
+        </div>
+      </article>
+    </div>
+
+    {/* Collection button */}
+    <div className="mt-12 text-center">
+      <Link
+        href="/arcs/all"
+        className="inline-flex min-h-[48px] items-center justify-center border border-[#8D806B] px-9 text-[10px] font-medium uppercase tracking-[0.2em] text-[#F3EDE2] transition-all duration-500 hover:border-[#F3EDE2] hover:bg-[#F3EDE2] hover:text-[#181612]"
+      >
+        Discover the Collection
+      </Link>
+    </div>
+  </div>
+</section>
+      {/* Past Commissions Section */}
+<section
+  id="past-commissions"
+  className="bg-[#F8F5EF] px-6 py-28 text-[#171512] md:px-12 md:py-36"
+>
+  <div className="scroll-reveal mx-auto max-w-6xl">
+    {/* Section introduction */}
+    <div className="mb-16 max-w-2xl md:mb-24">
+      <p className="mb-6 text-[10px] font-medium uppercase tracking-[0.32em] text-[#A77B2F] md:text-xs">
+        Selected Work
+      </p>
+
+      <h2 className="font-serif text-5xl font-light leading-[0.95] tracking-[-0.04em] sm:text-6xl md:text-7xl">
+        Past
+        <span className="block italic">Commissions.</span>
+      </h2>
+
+      <p className="mt-7 max-w-lg text-sm font-light leading-7 text-[#6B665D] md:text-base">
+        One-of-one bindings created around the books their owners chose to
+        preserve.
+      </p>
+    </div>
+
+    {/* Editorial commission gallery */}
+    <div className="grid grid-cols-1 gap-16 md:grid-cols-12 md:gap-10">
+      {/* The Daily Stoic */}
+      <article className="group md:col-span-7">
+        <div className="border border-[#CFC6B8] bg-transparent p-1">
+          <div className="relative aspect-[4/5] overflow-hidden">
+            <Image
+              src="/images/daily-stoic-after.png"
+              alt="The Daily Stoic custom leather commission"
+              fill
+              className="object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-[1.025]"
+              sizes="(max-width: 768px) 100vw, 58vw"
+            />
           </div>
         </div>
-      </section>
+
+        <div className="mt-5 flex items-start justify-between border-t border-[#171512]/20 pt-4">
+          <div>
+            <h3 className="font-serif text-xl font-light md:text-2xl">
+              The Daily Stoic
+            </h3>
+
+            <p className="mt-2 text-[10px] uppercase tracking-[0.18em] text-[#7B7469]">
+              Handbound in black leather
+            </p>
+          </div>
+
+          <span className="text-[10px] tracking-[0.18em] text-[#A77B2F]">
+            01
+          </span>
+        </div>
+      </article>
+
+      {/* The Alchemist */}
+      <article className="group md:col-span-5 md:mt-32">
+       <div className="border border-[#CFC6B8] bg-transparent p-1">
+          <div className="relative aspect-[4/5] overflow-hidden">
+            <Image
+              src="/images/Alchemist/alchemist_cover.jpeg"
+              alt="The Alchemist custom leather commission"
+              fill
+              className="object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-[1.025]"
+              sizes="(max-width: 768px) 100vw, 42vw"
+            />
+          </div>
+        </div>
+
+        <div className="mt-5 flex items-start justify-between border-t border-[#171512]/20 pt-4">
+          <div>
+            <h3 className="font-serif text-xl font-light md:text-2xl">
+              The Alchemist
+            </h3>
+
+            <p className="mt-2 text-[10px] uppercase tracking-[0.18em] text-[#7B7469]">
+              Handbound in blue leather
+            </p>
+          </div>
+
+          <span className="text-[10px] tracking-[0.18em] text-[#A77B2F]">
+            02
+          </span>
+        </div>
+      </article>
+    </div>
+
+    {/* Custom commission invitation */}
+    <div className="mt-28 border-t border-[#171512]/20 pt-16 text-center md:mt-36 md:pt-20">
+      <p className="mb-6 text-[10px] font-medium uppercase tracking-[0.32em] text-[#A77B2F]">
+        Your Book, Reimagined
+      </p>
+
+      <h3 className="font-serif text-4xl font-light leading-tight tracking-[-0.03em] md:text-6xl">
+        Have a book worth
+        <span className="block italic">preserving?</span>
+      </h3>
+
+      <Link
+        href="/start-your-rebind"
+        className="mt-10 inline-flex min-h-[48px] items-center justify-center border border-[#171512] bg-[#171512] px-9 text-[10px] font-medium uppercase tracking-[0.2em] text-white transition-all duration-500 hover:bg-transparent hover:text-[#171512]"
+      >
+        Customize Your Edition
+      </Link>
+    </div>
+  </div>
+</section>
     </div>
   )
 }

@@ -1,158 +1,196 @@
-"use client"
-
 import Image from "next/image"
-import { useKeenSlider } from "keen-slider/react"
-import "keen-slider/keen-slider.min.css"
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
-export default function ProductPage() {
-  const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
-    loop: true,
-  })
-
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const [isSubmitted, setIsSubmitted] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-
-  const images = [
-    "/images/Alchemist/alchemist_main.jpg", 
-    "/images/Alchemist/alchemist_1.jpeg", 
-    "/images/Alchemist/alchemist_2.jpeg",
-    "/images/Alchemist/alchemist_3.jpeg",
-    "/images/Alchemist/alchemist_4.jpeg",  
-  ]
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-
-    const form = e.target as HTMLFormElement
-    const formData = new FormData(form)
-
-    await fetch("https://formspree.io/f/mdkgyqyo", {
-      method: "POST",
-      body: formData,
-      headers: {
-        Accept: "application/json",
-      },
-    })
-
-    setIsSubmitting(false)
-    setIsSubmitted(true)
-  }
-
+export default function AlchemistPage() {
   return (
-    <div className="min-h-screen bg-white">
-      <main className="container mx-auto px-4 py-12 md:py-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-          {/* Image Slider */}
-          <div className="relative">
-            <div ref={sliderRef} className="keen-slider aspect-square bg-neutral-50 rounded-lg overflow-hidden">
-              {images.map((src, index) => (
-                <div key={index} className="keen-slider__slide flex justify-center items-center">
-                  <Image 
-                    src={src} 
-                    alt={`Slide ${index + 1}`}
-                    width={500}
-                    height={500}
-                    className="object-contain"
-                  />
-                </div>
-              ))}
-            </div>
-            <button
-     onClick={() => instanceRef.current?.prev()}
-       className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white text-black rounded-full shadow-md flex items-center justify-center w-10 h-10 sm:w-8 sm:h-8"
-        >
-          ←
-        </button>
-        {/* Right arrow */}
-        <button
-          onClick={() => instanceRef.current?.next()}
-          className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white text-black rounded-full shadow-md flex items-center justify-center w-10 h-10 sm:w-8 sm:h-8"
-        >
-          →
-        </button>
-          </div>
+    <main className="min-h-screen bg-[#D9D9D6] text-[#181612]">
+      {/*
+        PLACEHOLDER — Connect Add to Cart to the Noir Rebind cart later.
 
-          {/* Product Details */}
-          <div className="flex flex-col space-y-8">
-            <div className="space-y-2">
-              <h1 className="text-3xl md:text-4xl font-light tracking-tight">The Alchemist</h1>
-              <p className="text-2xl font-light">$175.00</p>
+        Previous Stripe Payment Link:
+        https://buy.stripe.com/3cI6oHf8z5115RPgRi1Jm0e
+      */}
+
+      <div className="mx-auto max-w-[1800px] px-3 py-3 md:px-5 md:py-5">
+        <div className="grid gap-3 lg:grid-cols-[minmax(0,2fr)_minmax(350px,0.82fr)]">
+          {/* Product Gallery */}
+          <section className="grid content-start gap-3 sm:grid-cols-2">
+            {/* Front cover */}
+            <div className="group relative aspect-[4/5] overflow-hidden bg-[#C8C9C7]">
+              <Image
+                src="/images/Alchemist/alchemist_main.jpg"
+                alt="The Alchemist handcrafted cobalt leather edition"
+                fill
+                priority
+                className="object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-[1.015]"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 34vw"
+              />
             </div>
 
-            <div className="h-px bg-neutral-200" />
-
-            <p className="text-neutral-600 leading-relaxed">
-              This handcrafted leather edition of <strong>The Alchemist</strong>, by Paulo Coelho is meant to honor Santiago's journey.
-               A journey that not only built his strength, but also his character. A journey that taught us that there is more to life than just earning gold.
-               True richness consists in the will to pursue your Personal Legend even when it makes no sense, knowing that everything happens for you, not to you and being present 
-               in every step of the way because that where you can feel the true magic of life.
-            </p>
-
-            <div className="h-px bg-neutral-200" />
-
-            <Button
-              className="w-full md:w-auto bg-black hover:bg-neutral-800 text-white rounded-none py-6 text-base"
-              onClick={() => window.open("https://buy.stripe.com/3cI6oHf8z5115RPgRi1Jm0e", "_blank")}
-            >
-              Buy Now
-            </Button>
-
-            <p className="text-sm text-neutral-500 italic mt-4">
-              Please allow 9–12 business days before shipping. Free U.S Shipping
-            </p>
-
-            {/* Contact Section */}
-            <div className="mt-8 space-y-4">
-              <p className="text-base text-neutral-600">
-                <strong>Have a question about this edition?</strong><br />
-                Use the form below to reach out — I'm happy to help.
-              </p>
+            {/* Satin photograph */}
+            <div className="group relative aspect-[4/5] overflow-hidden bg-[#C8C9C7]">
+              <Image
+                src="/images/Alchemist/alchemist_3_gallery.png"
+                alt="The Alchemist edition presented on satin"
+                fill
+                className="object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-[1.015]"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 34vw"
+              />
             </div>
 
-            {!isSubmitted ? (
-              
-              <form
-                onSubmit={handleSubmit}
-                className="mt-6 space-y-4"
+            {/* Spine */}
+            <div className="group relative aspect-[4/5] overflow-hidden bg-[#C8C9C7]">
+              <Image
+                src="/images/Alchemist/alchemist_2.jpeg"
+                alt="Gold-detailed spine of The Alchemist edition"
+                fill
+                className="object-fit object-center transition-transform duration-1000 ease-out group-hover:scale-[1.015]"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 34vw"
+              />
+            </div>
+
+            {/* Cleaned marbled endpapers */}
+            <div className="group relative aspect-[4/5] overflow-hidden bg-[#C8C9C7]">
+              <Image
+                src="/images/Alchemist/alchemist_1.jpeg"
+                alt="Blue, black, and gold marbled endpapers inside The Alchemist edition"
+                fill
+                className="object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-[1.015]"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 34vw"
+              />
+            </div>
+          </section>
+
+          {/* Edition Information */}
+          <aside className="bg-[#F7F4EE] px-7 py-10 sm:px-10 lg:px-12 lg:py-14">
+            <div className="lg:sticky lg:top-24">
+              <Link
+                href="/books/literarycollection"
+                className="inline-block text-[8px] uppercase tracking-[0.26em] text-[#746F68] transition-colors hover:text-[#181612]"
               >
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Your email"
-                  required
-                  className="w-full border border-neutral-300 rounded px-4 py-2"
-                />
-                <textarea
-                  name="message"
-                  placeholder="Your message"
-                  rows={4}
-                  className="w-full border border-neutral-300 rounded px-4 py-2"
-                  required
-                />
-                <button
-                  type="submit"
-                  className="bg-black text-white px-6 py-3 hover:bg-neutral-800"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? "Sending..." : "Send Message"}
-                </button>
-              </form>
-            ) : (
-              <div className="text-center py-12 space-y-4 border border-netral-200 rounded p-6">
-                <h2 className="text-2xl font-serif mb-4">Thank You!</h2>
-                <p className="text-neutral-700 mb-6">We've received your message and will be in touch soon.</p>
-                <a href="/" className="bg-black text-white px-6 py-3 hover:bg-neutral-800 inline-block">
-                  Return to Homepage
-                </a>
+                ← The Literary Collection
+              </Link>
+
+              <div className="mt-12">
+                <p className="text-[8px] uppercase tracking-[0.3em] text-[#A07C35]">
+                  Literary Collection
+                </p>
+
+                <h1 className="mt-5 font-serif text-4xl font-light tracking-[-0.035em] sm:text-5xl">
+                  The Alchemist
+                </h1>
+
+                <p className="mt-3 font-serif text-base italic text-[#655F57]">
+                  Paulo Coelho
+                </p>
+
+                <p className="mt-6 font-serif text-xl">$175 USD</p>
               </div>
-            )}
-          </div>
+
+              <div className="my-8 h-px bg-[#CEC7BD]" />
+
+              <p className="text-sm font-light leading-7 text-[#625D56]">
+                A handcrafted leather interpretation of Santiago’s journey—a
+                story of pursuit, purpose, and learning to recognize the path
+                that has been calling all along.
+              </p>
+
+              {/* Materials */}
+              <div className="mt-8 space-y-5 border-y border-[#CEC7BD] py-7">
+                <div className="flex items-center justify-between gap-6">
+                  <span className="text-[8px] uppercase tracking-[0.22em] text-[#77716A]">
+                    Leather
+                  </span>
+
+                  <span className="text-xs">Cobalt blue</span>
+                </div>
+
+                <div className="flex items-center justify-between gap-6">
+                  <span className="text-[8px] uppercase tracking-[0.22em] text-[#77716A]">
+                    Detail
+                  </span>
+
+                  <span className="text-xs">Gold and hand-painted</span>
+                </div>
+
+                <div className="flex items-center justify-between gap-6">
+                  <span className="text-[8px] uppercase tracking-[0.22em] text-[#77716A]">
+                    Binding
+                  </span>
+
+                  <span className="text-xs">Rebound by hand</span>
+                </div>
+              </div>
+
+              {/* Availability */}
+              <div className="mt-8 flex items-end justify-between gap-6">
+                <div>
+                  <p className="text-[8px] uppercase tracking-[0.22em] text-[#77716A]">
+                    Current status
+                  </p>
+
+                  <p className="mt-3 text-[10px] uppercase tracking-[0.18em]">
+                    Available to order
+                  </p>
+                </div>
+
+          
+              </div>
+
+              {/* PLACEHOLDER — Connect to the integrated cart before launch. */}
+              <button
+                type="button"
+                className="mt-8 w-full border border-[#07182B] bg-[#0B2944] px-6 py-5 text-[9px] uppercase tracking-[0.24em] text-white transition-colors duration-300 hover:bg-[#07182B]"
+              >
+                Add to Cart
+              </button>
+
+              <p className="mt-4 text-center text-[9px] font-light leading-5 text-[#77716A]">
+                Prepared by hand. Please allow 9–12 business days before
+                shipping.
+              </p>
+
+              {/* Additional Details */}
+              <div className="mt-10 border-b border-[#CEC7BD]">
+                <details className="border-t border-[#CEC7BD] py-6">
+                  <summary className="cursor-pointer list-none text-[9px] uppercase tracking-[0.22em]">
+                    Edition details
+                    <span className="float-right">＋</span>
+                  </summary>
+
+                  <p className="mt-5 text-xs font-light leading-6 text-[#625D56]">
+                    Each edition is rebound and finished individually by hand.
+                    Natural variations in the leather, painted details, marbled
+                    endpapers, and gold placement belong to the character of
+                    every volume.
+                  </p>
+                </details>
+
+                <details className="border-t border-[#CEC7BD] py-6">
+                  <summary className="cursor-pointer list-none text-[9px] uppercase tracking-[0.22em]">
+                    Production and delivery
+                    <span className="float-right">＋</span>
+                  </summary>
+
+                  <p className="mt-5 text-xs font-light leading-6 text-[#625D56]">
+                    Please allow 9–12 business days for the edition to be
+                    prepared before shipping. Final delivery timing depends on
+                    the destination.
+                  </p>
+                </details>
+              </div>
+
+              <Link
+                href="/books/literarycollection"
+                className="mt-10 inline-flex items-center gap-4 text-[8px] uppercase tracking-[0.24em] text-[#746F68] transition-colors hover:text-[#181612]"
+              >
+                Continue exploring
+                <span>→</span>
+              </Link>
+            </div>
+          </aside>
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
   )
 }

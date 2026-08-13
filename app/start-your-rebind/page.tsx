@@ -23,7 +23,7 @@ export default function StartYourRebindPage() {
   const faqs = [
     {
       q: "Do I need to ship you my book?",
-      a: "If you already own the book you'd like rebound or restored, you'll send it to us after we approve your request. Don't have a copy? We're happy to source the book for you-just note that outsourcing includes the cost of purchasing the book, which will be reflected in your quote. ",
+      a: "If you already own the book you'd like rebound, you'll send it to us after we approve your request. Don't have a copy? We're happy to source the book for you-just note that outsourcing includes the cost of purchasing the book, which will be reflected in your quote. ",
     },
     {
       q: "Where do I send my book?",
@@ -31,23 +31,23 @@ export default function StartYourRebindPage() {
     },
     {
       q: "How long will it take to receive my finished book?",
-      a: "Most custom rebinds are completed within 2–3 weeks after we receive your book. You'll get a specific timeline when we confirm your order.",
+      a: "Each edition is handcrafted from start to finish. Most commissions are completed within 3–5 weeks after your book arrives at the studio. You'll receive updates throughout the process. ",
     },
     {
       q: "How much does a custom rebind cost?",
-      a: "Custom rebinds typically start at $95, with pricing based on book condition, design complexity, and materials.Your quote will reflect your exact request - no surprises.",
+      a: "Every e dition is unique. We offer Studio, Collector's, and Heirloom editions, with pricing determined by the book, materials, and level of customization. You'll receive a personalized quote before any work begins.",
     },
     {
       q: "What if I’m unsure about the design?",
-      a: "No pressure. You can leave design fields blank — we’ll follow up to explore ideas together before anything is finalized.  ",
+      a: "You don't need to have everything figured out. Many collectors come to us with only a favorite book and a feeling they'd like the design to capture. We'll work together to create something meaningful before any materials are cut ",
     },
     {
       q: "Do you offer local pickups in San Diego?",
       a: "Yes. If you’re based in San Diego, we can coordinate a safe local drop-off or pickup instead of shipping.",
     },
     {
-  q: "Not ready to order yet?",
-  a: `No problem – if you have questions or want to talk it through first, feel free to email me at 
+  q: "Still Deciding?",
+  a: `No problem, if you have questions or want to talk it through first, feel free to email me at 
       <a href="mailto:noirrebind@gmail.com" class="text-[#b08d4f] underline hover:text-[#a67c33]">
         noirrebind@gmail.com
       </a>, I'd love to hear what you are thinking!`

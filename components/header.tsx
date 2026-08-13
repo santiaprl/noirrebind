@@ -2,17 +2,19 @@
 
 import Link from "next/link"
 import { useState } from "react"
-import { Menu, X } from "lucide-react"
+import { Menu, X, ShoppingBag } from "lucide-react"
+import { useCart } from "@/components/cart-provider"  
 
 const navigation = [
-  { name: "The Arcs", href: "/arcs" },
+  { name: "The Collection", href: "/arcs" },
   { name: "Our Process", href: "/process" },
-  { name: "Community", href: "/community" },
+  { name: "The Studio", href: "/community" },
   { name: "Contact", href: "/contact" },
 ]
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { itemCount } = useCart()
 
   return (
     <header className="bg-white">
@@ -32,12 +34,30 @@ export default function Header() {
             <Menu className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
-        <div className="hidden lg:flex lg:gap-x-12">
+                <div className="hidden items-center gap-10 lg:flex">
           {navigation.map((item) => (
-            <Link key={item.name} href={item.href} className="text-sm font-sans hover:underline underline-offset-4">
+            <Link
+              key={item.name}
+              href={item.href}
+              className="text-sm font-sans hover:underline underline-offset-4"
+            >
               {item.name}
             </Link>
           ))}
+
+          <Link
+            href="/cart"
+            className="relative inline-flex items-center justify-center p-2"
+            aria-label={`Shopping bag with ${itemCount} items`}
+          >
+            <ShoppingBag className="h-5 w-5" aria-hidden="true" />
+
+            {itemCount > 0 && (
+              <span className="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-black px-1 text-[9px] text-white">
+                {itemCount}
+              </span>
+            )}
+          </Link>
         </div>
       </nav>
 

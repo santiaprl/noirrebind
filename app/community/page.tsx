@@ -1,466 +1,299 @@
 "use client"
+
 import Link from "next/link"
-import { useState, useEffect, useRef, type FormEvent } from "react"
+import { useState, type FormEvent } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { ChevronDown, MessageCircle, Filter, BookOpen, Sparkles } from "lucide-react"
-import { AnimatePresence, motion } from "framer-motion"
-const FORMSPREE_BOOK_SUGGESTION_ACTION = "https://formspree.io/f/xqedpdbe"
-type QuizAnswer = {
-  text: string
-  arc: number
-}
-type QuizQuestion = {
-  question: string
-  answers: QuizAnswer[]
-}
 
-// Arc data with descriptions and book recommendations
-const arcDetails = [
-  {
-    id: 1,
-    title: "Arc I – This Is Where You Begin Again",
-    color: "#E69E6C",
-    textColor: "white",
-    description:
-      "You are not broken. You're just done performing. People call it stength-what they really mean is you've learned to hide it well. But you're tired. Of shirinking. Of smiling. Of surviving. You're not here to be fixed. You're here to remember who you were before the world told you how to act. Before you shrunk yourself to be loved. Before you lost track of what you actually needed. You're not falling apart - you're shedding what was never yours.",
-    tone: "Emotional and raw",
-    books: ["Breaking the Habit of Being Yourself", "The Mountain is You", "Man's Search for Meaning"],
-  },
-  {
-    id: 2,
-    title: "Arc II – Discipline Is a Love Language",
-    color: "#D98C7C",
-    quote: "Discipline isn't punishment. It's remembering your own power.",
-    description:
-      "This isn't about motivation - it's about honoring your word. You don't need more information. You need integrity with your promises, with yourself. Discipline is the bridge between who you've been and who you are meant to become. You want change? Then stop talking and start doing. You already know what to do. Now do it tired. Do it unsure. But Do it ANYWAY.",
-    tone: "Empowering and grounded",
-    books: ["Atomic Habits", "Can't Hurt Me", "Ego Is the Enemy"],
-  },
-  {
-    id: 3,
-    title: "Arc III – Return to Yourself",
-    color: "#E3DAC9",
-    textColor: "#2C2C2C",
-    quote: "You don't have to become anything. You just have to remember who you were before the world got loud.",
-    description:
-      "It's not a coincidence you landed here, they say that the teacher appears when the student is ready. When the student is ready to learn that peace was never something to find -  but something to return to, within. These books will guide you to the next step of your evolution as a human being. Read them with an open mind and leave behind whatever doesn't serve you. Trust your intuition - it's always being guiding you from the start.",
-    tone: "Spiritual and earthy",
-    books: ["The Power of Now", "The Daily Stoic", "The Mastery of Love"],
-  },
-  {
-    id: 4,
-    title: "Arc IV – Build in Silence",
-    color: "#8198AD",
-    quote: "They won't see you coming until it's too late. And that's the point.",
-    description:
-      "You want to leave a legacy? Then earn it in the silence. In the early mornings. In the reps no one claps for. You are not interested in being seen, yet. You came here to win, but winning requires strategy, knowledege, systems and consistency. The grind's isn't loud. But the results will be.",
-    tone: "Powerful and egocentric",
-    books: ["The Millionaire Fastlane", "The 48 Laws of Power", "Principles"],
-  },
-]
-
-// Quiz questions and answers
-const quizQuestions: QuizQuestion [] = [
-  {
-    question: "What's the phase you're in right now?",
-    answers: [
-      { text: "I feel  like I've lost myself. I just want to start over", arc: 1 },
-      { text: "I keep making promises I don't keep. I want to finally stay consistent", arc: 2 },
-      { text: "I'm overwhelmed and disconnected. I need space to hear myself again.", arc: 3 },
-      { text: "I have big goals - but I keep stalling. I don't know where to start", arc: 4 },
-    ],
-  },
-  {
-    question: "What's the biggest challenge you're facing right now?",
-    answers: [
-      { text: "Letting go", arc: 1 },
-      { text: "Following through", arc: 2 },
-      { text: "Staying present", arc: 3 },
-      { text: "Staying focused", arc: 4 },
-    ],
-  },
-  {
-    question: "How does your higher self looks like?",
-    answers: [
-      { text: "Calm and Peaceful", arc: 1 },
-      { text: "Focused and Organized", arc: 2 },
-      { text: "Spirtual and Grounded", arc: 3 },
-      { text: "Powerful and Mysterious", arc: 4 },
-    ],
-  },
-  {
-    question: "What are you most afraid of becoming?",
-    answers: [
-      { text: "Afraid of becoming the kind of person who carries old pain so long it becomes their identity.", arc: 1 },
-      { text: "Afraid of being the one who always plans but never delivers - who let's themselves down again and again.", arc: 2 },
-      { text: "Afraid of taking life too seriously and forgetting what it feels to be fully alive", arc: 3 },
-      { text: "Afraid of being the one who dreams big...but never figures out how to make it real", arc: 4 },
-    ],
-  },
-  {
-    question: "Pick the quote that resonates with you most:",
-    answers: [
-      { text: '"Your thoughts have consequences so great that they create your reality."', arc: 1 },
-      { text: '"We don\'t rise to the level of our goals. We fall to the level of our systems."', arc: 2 },
-      { text: '"You are not the voice in your mind, but the one who is aware of it."', arc: 3 },
-      {
-        text: '"Reputation is the cornerstone of power. Guard it with your life."',
-        arc: 4,
-      },
-    ],
-  },
-  {
-    question: "What do you secretly wish someone would tell you?",
-    answers: [
-      { text: '"You\'re allowed to begin again - this time, for real"', arc: 1 },
-      { text: '"You\'re not lazy. You just never had the right system."', arc: 2 },
-      { text: '"Trust your intution, it knows the way."', arc: 3 },
-      { text: '"You\'re not falling behind. You are playing a longer game."', arc: 4 },
-    ],
-  },
-]
+const FORMSPREE_BOOK_SUGGESTION_ACTION =
+  "https://formspree.io/f/xqedpdbe"
 
 export default function CommunityPage() {
-  const [selectedArc, setSelectedArc] = useState("")
-  const [showResult, setShowResult] = useState(false)
-  const [resultArc, setResultArc] = useState<number | null>(null)
-   const [bookSuggestion, setBookSuggestion] = useState("")
-  const [email, setEmail] = useState("")
+ const [bookSuggestion, setBookSuggestion] = useState("")
+
+const [selectedBook, setSelectedBook] = useState("")
+const [otherBook, setOtherBook] = useState("")
+const [reason, setReason] = useState("")
+const [newsletterConsent, setNewsletterConsent] = useState(false)
+
+const [email, setEmail] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
-const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
-const [submitMessage, setSubmitMessage] = useState("")
-  const quizRef = useRef<HTMLDivElement | null>(null)
-  const scrollToQuiz = () => {
-    quizRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
-  }
-  
-  const [filterBy, setFilterBy] = useState("all")
-  const [sortBy, setSortBy] = useState("recent")
-  const [showFilters, setShowFilters] = useState(false)
 
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle")
 
+  const [submitMessage, setSubmitMessage] = useState("")
 
-  // Quiz state
-  const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [answers, setAnswers] = useState<(number | null)[]>(Array(quizQuestions.length).fill(null))
-  const [shuffledQuestions, setShuffledQuestions] = useState<QuizQuestion[]>([])
- const [quizComplete, setQuizComplete] = useState(false) 
- const [showQuiz, setShowQuiz] = useState(false)
-
-  // Shuffle answers for each question on component mount
-  useEffect(() => {
-    const shuffled = quizQuestions.map((question) => {
-      // Create a copy of the question
-      const questionCopy = { ...question }
-
-      // Shuffle the answers
-      questionCopy.answers = [...question.answers].sort(() => Math.random() - 0.5)
-
-      return questionCopy
-    })
-
-    setShuffledQuestions(shuffled)
-  }, [])
-
-  const handleAnswerSelect = (answerIndex:number) => {
-    const newAnswers = [...answers]
-    newAnswers[currentQuestion] = shuffledQuestions[currentQuestion].answers[answerIndex].arc
-    setAnswers(newAnswers)
-
-    // Move to next question or show result if last question
-    if (currentQuestion < quizQuestions.length - 1) {
-      setCurrentQuestion(currentQuestion + 1)
-    } else {
-      calculateResult(newAnswers)
-    }
-  }
-
-  const calculateResult = (selectedAnswers: (number | null)[]) => {
-    // Count the frequency of each arc in the answers
-    const arcCounts = { 1: 0, 2: 0, 3: 0, 4: 0 }
-
-    selectedAnswers.forEach((arc) => {
-      if (arc !== null) {
-        arcCounts[arc as keyof typeof arcCounts]++
-      }
-    })
-
-    // Find the arc with the highest count
-    let maxCount = 0
-    let resultArcId = 1 // Default to Arc 1
-
-    Object.entries(arcCounts).forEach(([arc, count]) => {
-      if (count > maxCount) {
-        maxCount = count
-        resultArcId = Number(arc)
-      }
-    })
-
-    setResultArc (resultArcId)
-    setQuizComplete(true)
-
-    // Wait a moment before showing the result for animation purposes
-    setTimeout(() => {
-      setShowResult(true)
-    }, 500)
-  }
-
-  const resetQuiz = () => {
-    setCurrentQuestion(0)
-    setAnswers(Array(quizQuestions.length).fill(null))
-    setShowResult(false)
-    setQuizComplete(false)
-    setResultArc(null)
-  }
-
-  // Calculate progress percentage for the progress bar
-  const progressPercentage = (currentQuestion / quizQuestions.length) * 100
-async function handleBookSuggestionSubmit(e: FormEvent<HTMLFormElement>) {
-  console.log("SUBMIT HANDLER RAN")
+  async function handleBookSuggestionSubmit(
+  e: FormEvent<HTMLFormElement>
+) {
   e.preventDefault()
 
   setIsSubmitting(true)
   setSubmitStatus("idle")
   setSubmitMessage("")
 
+  const submittedBook =
+    selectedBook === "Other"
+      ? otherBook.trim()
+      : selectedBook
+
   try {
     const formData = new FormData()
-    if (email.trim()) formData.append("email", email.trim())
-    formData.append("bookSuggestion", bookSuggestion.trim())
 
-    const res = await fetch(FORMSPREE_BOOK_SUGGESTION_ACTION, {
-      method: "POST",
-      body: formData,
-      headers: { Accept: "application/json" },
-    })
+    formData.append(
+      "selectedBook",
+      submittedBook || bookSuggestion.trim()
+    )
 
-    if (res.ok) {
-      setEmail("")
+    formData.append("reason", reason.trim())
+    formData.append("email", email.trim())
+
+    formData.append(
+      "newsletterConsent",
+      newsletterConsent ? "Yes" : "No"
+    )
+
+    const response = await fetch(
+      FORMSPREE_BOOK_SUGGESTION_ACTION,
+      {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      }
+    )
+
+    if (response.ok) {
       setBookSuggestion("")
+      setSelectedBook("")
+      setOtherBook("")
+      setReason("")
+      setEmail("")
+      setNewsletterConsent(false)
+
       setSubmitStatus("success")
-      setSubmitMessage("Submitted. Thank you 💌")
+      setSubmitMessage(
+        "Your vote has been recorded. Thank you for helping shape the next edition."
+      )
+
       return
     }
 
     setSubmitStatus("error")
-    setSubmitMessage("Something went wrong. Please try again.")
+    setSubmitMessage(
+      "Something went wrong. Please try again."
+    )
   } catch {
     setSubmitStatus("error")
-    setSubmitMessage("Network error. Please try again.")
+    setSubmitMessage(
+      "Network error. Please try again."
+    )
   } finally {
     setIsSubmitting(false)
   }
 }
 
   return (
-    <div className="min-h-screen bg-[#7F1F0E]">
-      <div className="container mx-auto py-2  px-2">
-          <div className="mt-10">
-            <div className="bg-[#F0DED0] rounded-lg p-8 border border-[#49111C]/10 shadow-sm">
-              <h2 className="font-serif text-4xl md:text-5xl font-light mb-8 text-center text-[#49111C]">The Studio</h2>
-              <p className="text-center text-gray-700 mb-4 max-w-2X1 mx-auto">
-               Your next chapter starts here
-              </p>
+    <div className="min-h-screen bg-[#181612]">
+      <div className="container mx-auto px-2 py-2">
+        <div className="mt-10">
+         <div className="border border-[#A77B2F]/20 bg-[#F8F5EF] px-6 py-16 md:px-12 md:py-20">
+            <p className="mb-6 text-center text-[10px] font-medium uppercase tracking-[0.32em] text-[#A77B2F]">
+  Community Curation
+</p>
 
-{/* Book suggestion */}
-<div className="max-w-2xl mx-auto mb-10">
-  <div className="bg-[#F0DED0] p-8 rounded-lg shadow-sm border border-[#49111C]/10">
-    <h3 className="text-xl font-medium mb-2 text-center text-[#49111C]">Book suggestion</h3>
-    <p className="text-center text-gray-600 text-sm mb-6">
-      What book should enter the studio next?
-    </p>
+<h1 className="text-center font-serif text-5xl font-light tracking-[-0.04em] text-[#241A17] md:text-7xl">
+  The Studio
+</h1>
 
-    <form
-  action={FORMSPREE_BOOK_SUGGESTION_ACTION}
-  method="POST"
-  onSubmit={handleBookSuggestionSubmit}
-  className="space-y-4"
->
-      <Input
-        type="email"
-        name="email"
-        placeholder="Email (optional)"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        className="border-[#7F1F0E]/20 focus-visible:ring-[#7F1F0E]"
-      />
+<p className="mt-6 text-center font-serif text-xl italic text-[#5F5149] md:text-2xl">
+  Every edition begins with a reader.
+</p>
 
-      <Textarea
-        name="bookSuggestion"
-        placeholder='You’re welcome to suggest a book you love'
-        value={bookSuggestion}
-        onChange={(e) => setBookSuggestion(e.target.value)}
-        className="min-h-[110px] border-[#49111C]/20 focus-visible:ring-[#49111C]/20"
+<div
+  className="mx-auto my-8 h-px w-12 bg-[#A77B2F]"
+  aria-hidden="true"
+/>
+
+
+            {/* Book suggestion form */}
+            <div className="mx-auto mb-10 max-w-2xl">
+              <div className="border border-[#D4C7B6] bg-[#F1ECE3]/50 p-6 md:p-10">
+                
+                <form
+                  action={FORMSPREE_BOOK_SUGGESTION_ACTION}
+                  method="POST"
+                  onSubmit={handleBookSuggestionSubmit}
+                  className="space-y-4"
+                >
+                 <div className="mb-8 text-center">
+  <h3 className="font-serif text-2xl font-light text-[#241A17] md:text-3xl">
+    Which book belongs in leather next?
+  </h3>
+
+  <p className="mt-3 text-xs uppercase tracking-[0.16em] text-[#7A6F67]">
+    Voting closes August 31, 2026
+  </p>
+
+  <p className="mt-1 text-xs text-[#8A817A]">
+    The selected edition will be announced September 7, 2026.
+  </p>
+</div>
+
+<fieldset className="space-y-3">
+  <legend className="sr-only">
+    Select the book you would like to vote for
+  </legend>
+
+  {[
+  "The Odyssey",
+  "East of Eden",
+  "Crime and Punishment",
+  "Other",
+].map((book) => (
+    <label
+      key={book}
+      className={`flex cursor-pointer items-center justify-between border px-5 py-4 transition-all duration-300 ${
+        selectedBook === book
+          ? "border-[#A77B2F] bg-[#A77B2F]/10"
+          : "border-[#49111C]/20 bg-transparent hover:border-[#A77B2F]/60"
+      }`}
+    >
+      <span className="font-serif text-lg text-[#2B211D]">
+        {book}
+      </span>
+
+      <input
+        type="radio"
+        name="selectedBook"
+        value={book}
+        checked={selectedBook === book}
+        onChange={(e) => setSelectedBook(e.target.value)}
+        className="h-4 w-4 accent-[#7F1F0E]"
         required
       />
+    </label>
+  ))}
+</fieldset>
 
-      {/* Submit button at the bottom */}
-      <Button
+{selectedBook === "Other" && (
+  <div className="pt-2">
+    <label
+      htmlFor="other-book"
+      className="mb-2 block text-xs uppercase tracking-[0.14em] text-[#655A53]"
+    >
+      Name the Book
+    </label>
+
+    <Input
+      id="other-book"
+      type="text"
+      name="otherBook"
+      placeholder="Enter a book title"
+      value={otherBook}
+      onChange={(e) => setOtherBook(e.target.value)}
+      className="border-[#49111C]/20 bg-white/40 focus-visible:ring-[#A77B2F]"
+      required
+    />
+  </div>
+)}
+
+<div className="pt-4">
+  <label
+    htmlFor="reason"
+    className="mb-2 block text-xs uppercase tracking-[0.14em] text-[#655A53]"
+  >
+    Tell us why
+    <span className="ml-2 normal-case tracking-normal text-[#8A817A]">
+      Optional
+    </span>
+  </label>
+
+  <Textarea
+    id="reason"
+    name="reason"
+    placeholder="What would this edition mean to you?"
+    value={reason}
+    onChange={(e) => setReason(e.target.value)}
+    className="min-h-[100px] border-[#49111C]/20 bg-white/40 focus-visible:ring-[#A77B2F]"
+  />
+</div>
+
+<div className="pt-2">
+  <label
+    htmlFor="vote-email"
+    className="mb-2 block text-xs uppercase tracking-[0.14em] text-[#655A53]"
+  >
+    Email Address
+  </label>
+
+  <Input
+    id="vote-email"
+    type="email"
+    name="email"
+    placeholder="you@example.com"
+    value={email}
+    onChange={(e) => setEmail(e.target.value)}
+    className="border-[#49111C]/20 bg-white/40 focus-visible:ring-[#A77B2F]"
+    required
+  />
+
+  <p className="mt-2 text-xs leading-5 text-[#81766E]">
+    We’ll email you when the selected edition is announced.
+  </p>
+</div>
+
+<label className="flex cursor-pointer items-start gap-3 pt-2">
+  <input
+    type="checkbox"
+    name="newsletterConsent"
+    checked={newsletterConsent}
+    onChange={(e) =>
+      setNewsletterConsent(e.target.checked)
+    }
+    className="mt-1 h-4 w-4 accent-[#7F1F0E]"
+    required
+  />
+
+  <span className="text-xs leading-5 text-[#6B625B]">
+    I would like to receive the voting result and occasional
+    updates from the Noir Rebind studio. I can unsubscribe at
+    any time.
+  </span>
+</label>
+
+                 <Button
   type="submit"
   disabled={isSubmitting}
-  className="w-full border border-[#4A1F2A] text-[#4A1F2A] bg-transparent hover:bg-[#4A1F2A]/10 hover:border-[#4A1F2A] hover:text-[#4A1F2A] transition duration-200 rounded-md"
+  className="min-h-[52px] w-full rounded-none border border-[#181612] bg-[#181612] text-[10px] font-medium uppercase tracking-[0.22em] text-[#F8F5EF] transition-all duration-500 hover:border-[#A77B2F] hover:bg-[#A77B2F] hover:text-[#181612]"
 >
-  {isSubmitting ? "Submitting..." : "Submit suggestion"}
+  {isSubmitting
+    ? "Recording Your Vote..."
+    : "Cast My Vote"}
 </Button>
 
-      {submitStatus !== "idle" && (
-  <p className={`text-sm text-center ${submitStatus === "success" ? "text-green-700" : "text-red-700"}`}>
-    {submitMessage}
-  </p>
-)}
+                  {submitStatus !== "idle" && (
+                    <p
+                      className={`text-center text-sm ${
+                        submitStatus === "success"
+                          ? "text-green-700"
+                          : "text-red-700"
+                      }`}
+                    >
+                      {submitMessage}
+                    </p>
+                  )}
 
-      {/* Secondary actions below (harmonic + clean labels) */}
-      <div className="flex flex-col gap-3 pt-2">
-            <Button
-  type="button"
-  onClick={() => {
-    setShowQuiz(true)
-    setTimeout(scrollToQuiz, 250)
-  }}
-  variant="default"
- className="w-full py-6 text-base text-white bg-[#A24E3F] hover:bg-[#7a0b0f] transition-all shadow-sm hover:shadow-md"
-
-
->
-  Let me recommend a book
-</Button>
-
-        <Button asChild className="w-full py-6 text-base text-white bg-[#8e3c51] hover:bg-[#4A1F2A] transition-all shadow-sm hover:shadow-md">
-  <Link href="/community/handwritten-letter">
-    Receive a handwritten letter
-  </Link>
-</Button>
-      </div>
-    </form>
-  </div>
-</div>
-              {showQuiz && (
-  <motion.div
-    id="arc-quiz"
-    ref={quizRef}
-    initial={{ opacity: 0, y: -10, height: 0 }}
-    animate={{ opacity: 1, y: 0, height: "auto" }}
-    transition={{ duration: 0.45, ease: "easeOut" }}
-    className="max-w-2xl mx-auto overflow-hidden"
-  >
-                {!quizComplete ? (
-                  <div>
-                    {/* Progress bar */}
-                    <div className="w-full bg-gray-200 rounded-full h-2.5 mb-8">
-                      <div
-                        className="bg-black h-2.5 rounded-full transition-all duration-300"
-                        style={{ width: `${progressPercentage}%` }}
-                      ></div>
-                    </div>
-
-                    {shuffledQuestions.length > 0 && (
-                      <div className="bg-white p-8 rounded-lg shadow-sm">
-                        <h3 className="text-xl font-medium mb-6">
-                          {currentQuestion + 1}. {shuffledQuestions[currentQuestion].question}
-                        </h3>
-
-                        <div className="space-y-3">
-                          {shuffledQuestions[currentQuestion].answers.map((answer, index) => (
-                            <button
-                              key={index}
-                              onClick={() => handleAnswerSelect(index)}
-                              className="w-full text-left p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-black"
-                            >
-                              {answer.text}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  <AnimatePresence>
-  {showResult && resultArc && (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.9 }}
-      transition={{ duration: 0.5 }}
-      className="rounded-lg overflow-hidden shadow-lg max-w-xl mx-auto"
-    >
-      <div
-        className="p-8 text-center"
-        style={{
-          backgroundColor: arcDetails[resultArc - 1].color,
-          color: arcDetails[resultArc - 1].textColor ? arcDetails[resultArc - 1].textColor : "white",
-        }}
-      >
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-        >
-          <Sparkles className="h-8 w-20 mx-auto mb-4 opacity-80" />
-          <h3 className="font-serif text-3xl md:text-3xl font-medium mb-3">
-            {arcDetails[resultArc - 1].title}
-          </h3>
-          <p className="text-sm md:text-base opacity-70 mb-10">
-            Your path is unfolding. Here's what it's revealing...
-          </p>
-
-          <div className="text-sm md:text-base leading-relaxed opacity-90 max-w-md md:max-w-[45ch] mx-auto text-center px-5">
-            {arcDetails[resultArc - 1].description}
-          </div>
-          <p className="italic mt-6 text-sm opacity-70">
-            This arc mirrors your current journey. Let it guide your next read.
-          </p>
-        </motion.div>
-      </div>
-
-      <div className="bg-white p-8">
-        <h4 className="font-serif text-lg font-medium mb-6 flex items-center justify-center gap-2">
-          <BookOpen className="h-5 w-5" />
-          Book Recommendations
-        </h4>
-        <div className="space-y-4">
-          {arcDetails[resultArc - 1].books.map((book) => (
-            <div
-              key={book}
-              className="p-4 border border-gray-100 rounded-md text-center hover:bg-gray-50 transition-colors duration-200"
-            >
-              <h5 className="font-medium">{book}</h5>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-8 text-center">
-          <Button onClick={resetQuiz} variant="outline" className="mx-auto">
-            Take the Quiz Again
-          </Button>
-        </div>
-      
-      <p className="italic text-xs text-center mt-5 text-gray-900 max-w-sm mx-auto">
-        Private spaces are coming soon—one for each emotional arc.
-        If this arc speaks to where you are right now,{" "}
-        <a
-          href="https://forms.gle/NVEGTg8gmonLmxxW7"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline text-black hover:text-gray-800"
-        >
-          you’re welcome to leave your name
-        </a>
-        . We’ll notify you when applications open.
-      </p>
-        </div>
-    </motion.div>
-  )}
-</AnimatePresence>
-
-                )}
-               </motion.div>
-)}
+                  
+                </form>
+              </div>
             </div>
           </div>
-        
+        </div>
       </div>
     </div>
   )

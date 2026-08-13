@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import type { Metadata } from "next"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
+import { CartProvider } from "@/components/cart-provider"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
   title: "Noir Rebind | Luxury Bookbinding",
   description: "Modern leather rebinding for books that changed you.",
   icons: {
-    icon: "/images/noir-rebind-logo.png",
+    icon: "/images/Noir_logo.png",
   },
     generator: 'v0.dev'
 }
@@ -34,12 +35,14 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${playfair.variable} font-sans`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-          <div className="flex min-h-screen flex-col">
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
-        </ThemeProvider>
+  <CartProvider>
+    <div className="flex min-h-screen flex-col">
+      <Header />
+      <main className="flex-1">{children}</main>
+      <Footer />
+    </div>
+  </CartProvider>
+</ThemeProvider>
       </body>
     </html>
   )

@@ -3,53 +3,133 @@ import Image from "next/image"
 import Link from "next/link"
 import { arcs, books } from "@/lib/data"
 import { usePathname } from 'next/navigation';
+  const museumCollections = [
+  {
+    id: "stoics",
+    number: "I",
+    title: "The Stoic Collection",
+    subtitle: "Ideas that have endured for centuries.",
+    description:
+      "Handcrafted editions of the philosophers whose words continue to shape how we live, endure, and choose.",
+    image: "/images/stoics/marcus/marcus-gallery-v2.png",
+  },
+  {
+    id: "literary",
+    number: "II",
+    title: "The Literary Collection",
+    subtitle: "Stories that become part of us.",
+    description:
+      "Literary works preserved for the stories they contain and the lives they accompany.",
+    image: "/images/Alchemist/alchemist-gallery-v2.png",
+  },
+  {
+    id: "archive",
+    number: "III",
+    title: "The Studio Archive",
+    subtitle: "Past works from the bindery.",
+    description:
+      "A record of private commissions, retired designs, and earlier works created inside the Noir Rebind studio.",
+    image: "/images/atomic/atomic-gallery-v2.png",
+  },
+]
 
 export default function ArcsPage() {
 const pathname = usePathname ();
   return (
     <div className="bg-white">
       <div className="container mx-auto py-16 px-4">
-        <h1 className="font-serif text-4xl md:text-5xl font-light text-center mb-16">The Four Arcs</h1>
+        <h1 className="font-serif text-4xl md:text-5xl font-light text-center mb-16">The Collection</h1>
+          <p className="mx-auto mt-6 max-w-2xl text-center font-serif text-lg font-light leading-8 text-[#5F574F] md:text-xl">
+  Philosophy, literature, and enduring works; selected with intention
+  and rebound by hand.
+</p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-          {arcs.map((arc) => (
-            <Link href={`/arcs/${arc.id}`} key={arc.id} className="block group">
-              <div
-                className="h-80 rounded-lg overflow-hidden relative transition-all duration-300 group-hover:shadow-xl"
-                style={{ backgroundColor: arc.color }}
-              >
-                <div className="absolute inset-0 flex flex-col justify-center items-center p-6 text-center">
-                  <h2
-                    className={`font-serif text-2xl md:text-3xl font-semibold mb-4 ${
-                      arc.textColor ? "text-[#2C2C2C]" : "text-white"
-                    }`}
-                  >
-                    {arc.title}
-                  </h2>
-                  <p className={`font-sans text-lg ${arc.textColor ? "text-[#2C2C2C]/80" : "text-white/80"}`}>
-                    {arc.description}
-                  </p>
-                  <div className="mt-6">
-                    <div
-                      className={`inline-block px-4 py-2 rounded border ${
-                        arc.textColor ? "border-[#2C2C2C]/30 text-[#2C2C2C]" : "border-white/30 text-white"
-                      } text-sm`}
-                    >
-                      View Books
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          ))}
+<div
+  className="mx-auto mb-16 mt-8 h-px w-12 bg-[#A77B2F]"
+  aria-hidden="true"
+/>
+
+        {/* Museum collection index */}
+<div className="scroll-reveal mb-20 border-t border-[#C9BFAF]">
+  {museumCollections.map((collection, index) => (
+    <Link
+     href={
+  collection.id === "stoics"
+    ? "/books/stoiccollection"
+    : collection.id === "literary"
+      ? "/books/literarycollection"
+      : "/books/archive"
+}
+      key={collection.id}
+      className="group grid grid-cols-1 gap-8 border-b border-[#C9BFAF] py-10 transition-colors duration-500 hover:bg-[#EFE9DF]/60 md:grid-cols-12 md:items-center md:gap-10 md:px-6 md:py-14"
+    >
+      {/* Collection number */}
+      <div
+  className={`md:col-span-1 ${
+    index % 2 !== 0 ? "md:order-2" : "md:order-1"
+  }`}
+>
+        <p className="text-[10px] font-medium uppercase tracking-[0.3em] text-[#A77B2F]">
+          {collection.number}
+        </p>
+      </div>
+
+      {/* Collection information */}
+      <div
+  className={`md:col-span-4 ${
+    index % 2 !== 0 ? "md:order-3" : "md:order-2"
+  }`}
+>
+        <p className="mb-4 text-[9px] font-medium uppercase tracking-[0.25em] text-[#82786E]">
+          Noir Rebind Collection
+        </p>
+
+        <h2 className="font-serif text-3xl font-light tracking-[-0.03em] text-[#181612] transition-transform duration-500 group-hover:translate-x-1 md:text-5xl">
+          {collection.title}
+        </h2>
+
+        <p className="mt-4 font-serif text-lg italic text-[#655D55] md:text-xl">
+          {collection.subtitle}
+        </p>
+
+        <p className="mt-5 max-w-xl text-sm font-light leading-7 text-[#706860]">
+          {collection.description}
+        </p>
+
+        <div className="mt-7 inline-flex items-center text-[9px] font-medium uppercase tracking-[0.2em] text-[#181612]">
+          {collection.id === "archive"
+  ? "Enter the Archive"
+  : "Explore the Collection"}
+          <span className="ml-4 transition-transform duration-300 group-hover:translate-x-1">
+            →
+          </span>
         </div>
+      </div>
+
+      {/* Collection image */}
+      <div className="md:col-span-7">
+        <div className="mx-auto w-full max-w-[460px] overflow-hidden bg-[#EAE5DC]">
+          <div className="relative aspect-[3/4] overflow-hidden">
+            <Image
+              src={collection.image}
+              alt={collection.title}
+              fill
+              className="object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-[1.025]"
+              sizes="(max-width: 768px) 100vw, 42vw"
+            />
+          </div>
+        </div>
+      </div>
+    </Link>
+  ))}
+</div>
 
         <div className="text-center mb-8">
           <Link
             href="/arcs/all"
             className="inline-block px-8 py-3 bg-black text-white text-sm font-medium hover:bg-gray-800 transition-colors duration-300"
           >
-            View All Books
+            View All Editions
           </Link>
         </div>
 
@@ -58,11 +138,11 @@ const pathname = usePathname ();
             href="/start-your-rebind"
             className="inline-block px-8 py-3 bg-white text-black text-sm font-medium border border-black hover:bg-black hover:text-white transition-colors duration-300 mt-4"
           >
-            Have a book of your own? Start Your Custom Rebind →
+            Personalize Your Edition →
           </Link>
         </div>
 
-        <div className="border-t border-gray-200 pt-16">
+        <div className="hidden">
           <h2 className="font-serif text-3xl font-light text-center mb-12">Featured Books</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {books.slice(0, 4).map((book) => (

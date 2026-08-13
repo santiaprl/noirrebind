@@ -7,7 +7,7 @@
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
 
-    --card: 0 0% 100%;  
+    --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;
 
     --popover: 0 0% 100%;
@@ -65,13 +65,60 @@
     --ring: 0 0% 83.1%;
   }
 
-  /* 
-  *{
-    @apply border;
-  }
-  */
   body {
     @apply bg-background text-foreground;
-    background-color: #d7c3b2;
+    background-color: #f8f5ef;
+  }
+}
+
+/* Hero entrance animation */
+
+@keyframes noirHeroReveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-reveal {
+  animation: noirHeroReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Scroll entrance animation */
+
+@keyframes noirScrollReveal {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-reveal {
+  animation-name: noirScrollReveal;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-timing-function: linear;
+  animation-timeline: view();
+  animation-range: entry 5% cover 32%;
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-reveal,
+  .scroll-reveal {
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
 }
