@@ -1,7 +1,16 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
+import { useState } from "react"
+import { products } from "@/lib/products"
+import { useCart } from "@/components/cart-provider"
 
 export default function SenecaPage() {
+  const product = products.seneca
+  const { addItem } = useCart()
+  const [addedToCart, setAddedToCart] = useState(false)
+
   return (
     <main className="min-h-screen bg-[#E2E1DE] text-[#181612]">
       {/* PLACEHOLDER — Update final price, inventory, and cart connection later. */}
@@ -68,18 +77,20 @@ export default function SenecaPage() {
 
               <div className="mt-14">
                 <p className="text-[8px] uppercase tracking-[0.3em] text-[#986F39]">
-                  Stoic Collection · Edition II
-                </p>
+  Stoic Collection · {product.editionIdentifier}
+</p>
 
-                <h1 className="mt-5 font-serif text-4xl font-light tracking-[-0.035em] sm:text-5xl">
-                  Seneca
-                </h1>
+<h1 className="mt-5 font-serif text-4xl font-light tracking-[-0.035em] sm:text-5xl">
+  {product.title}
+</h1>
 
-                <p className="mt-3 font-serif text-base italic text-[#655F57]">
-                  Letters from a Stoic
-                </p>
+<p className="mt-3 font-serif text-base italic text-[#655F57]">
+  Letters from a Stoic
+</p>
 
-                <p className="mt-6 font-serif text-xl">$200 USD</p>
+<p className="mt-6 font-serif text-xl">
+  ${product.price} USD
+</p>
               </div>
 
               <div className="my-9 h-px bg-[#CEC7BD]" />
@@ -108,12 +119,22 @@ export default function SenecaPage() {
                 </div>
 
                 <div className="flex items-center justify-between gap-6">
-                  <span className="text-[8px] uppercase tracking-[0.22em] text-[#77716A]">
-                    Binding
-                  </span>
+  <span className="text-[8px] uppercase tracking-[0.22em] text-[#77716A]">
+    Binding
+  </span>
 
-                  <span className="text-xs">Rebound by hand</span>
-                </div>
+  <span className="text-xs">Rebound by hand</span>
+</div>
+
+<div className="flex items-center justify-between gap-6">
+  <span className="text-[8px] uppercase tracking-[0.22em] text-[#77716A]">
+    Edition
+  </span>
+
+  <span className="text-xs">
+    {product.editionIdentifier} · Limited to {product.editionLimit}
+  </span>
+</div>
               </div>
 
               <div className="mt-9">
@@ -127,12 +148,30 @@ export default function SenecaPage() {
               </div>
 
               {/* PLACEHOLDER — Connect this button to the cart before launch. */}
-              <button
-                type="button"
-                className="mt-8 w-full border border-[#173A58] bg-[#244F70] px-6 py-5 text-[9px] uppercase tracking-[0.24em] text-white transition-colors duration-300 hover:bg-[#193B57]"
-              >
-                Add to Cart
-              </button>
+                <button
+  type="button"
+  onClick={() => {
+    addItem({
+      id: product.id,
+      name: product.title,
+      price: product.price,
+      image: "/images/stoics/seneca/seneca.png",
+    })
+
+    setAddedToCart(true)
+
+    window.setTimeout(() => {
+      setAddedToCart(false)
+    }, 1800)
+  }}
+  className={`mt-8 w-full border px-6 py-5 text-[9px] uppercase tracking-[0.24em] text-white transition-all duration-300 ${
+    addedToCart
+      ? "border-[#4F5A45] bg-[#011F5B]"
+      : "border-[#173A58] bg-[#244F70] hover:bg-[#193B57]"
+  }`}
+>
+  {addedToCart ? "Added to Cart ✓" : "Add to Cart"}
+</button>
 
               <p className="mt-4 text-center text-[9px] font-light leading-5 text-[#77716A]">
                 Rebound individually by hand in the Noir Rebind studio.

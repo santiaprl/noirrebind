@@ -124,8 +124,8 @@ export default function StoicCollectionPage() {
                   <div className="flex items-start justify-between gap-5">
                     <div>
                       <p className="mb-2 text-[8px] uppercase tracking-[0.26em] text-[#8A6938]">
-                        Edition No. I
-                      </p>
+  Edition I · Limited to 15
+</p>  
 
                       <h3 className="font-serif text-2xl font-light">
                         Marcus Aurelius
@@ -162,8 +162,8 @@ export default function StoicCollectionPage() {
                   <div className="flex items-start justify-between gap-5">
                     <div>
                       <p className="mb-2 text-[8px] uppercase tracking-[0.26em] text-[#8A6938]">
-                        Edition No. II
-                      </p>
+  Edition I · Limited to 15
+</p>
 
                       <h3 className="font-serif text-2xl font-light">
                         Seneca
@@ -200,8 +200,8 @@ export default function StoicCollectionPage() {
                   <div className="flex items-start justify-between gap-5">
                     <div>
                       <p className="mb-2 text-[8px] uppercase tracking-[0.26em] text-[#8A6938]">
-                        Edition No. III
-                      </p>
+  Edition I · Limited to 15
+</p>
 
                       <h3 className="font-serif text-2xl font-light">
                         Epictetus
@@ -240,8 +240,8 @@ export default function StoicCollectionPage() {
 
           <div className="md:col-span-5">
             <p className="mb-6 text-[9px] uppercase tracking-[0.32em] text-[#C29A59]">
-              The Complete Collection
-            </p>
+  Collection Edition · Edition I · Limited to 15
+</p>
 
             <h2 className="font-serif text-4xl font-light leading-[1.05] tracking-[-0.035em] md:text-6xl">
               The Three
@@ -261,7 +261,7 @@ export default function StoicCollectionPage() {
                 Three-volume set
               </p>
 
-              <p className="text-sm tracking-wide">$600 USD</p>
+              <p className="text-sm tracking-wide">$500 USD</p>
             </div>
 
             <div className="mt-8 inline-flex items-center gap-4 text-[9px] uppercase tracking-[0.24em]">
@@ -284,14 +284,14 @@ export default function StoicCollectionPage() {
   >
     {/* Exhibition label */}
     <div className="flex items-center justify-between py-5">
-      <p className="text-[8px] uppercase tracking-[0.3em] text-[#A7A8A3]">
-        The Stoic Collection · Companion Edition
-      </p>
+  <p className="text-[8px] uppercase tracking-[0.3em] text-[#A7A8A3]">
+    The Stoic Collection · Edition I
+  </p>
 
-      <p className="text-[8px] uppercase tracking-[0.3em] text-[#A7A8A3]">
-        Edition IV
-      </p>
-    </div>
+  <p className="text-[8px] uppercase tracking-[0.3em] text-[#A7A8A3]">
+    Limited to 10
+  </p>
+</div>
 
     <div className="grid gap-14 border-t border-[#454642] py-14 md:grid-cols-12 md:items-center md:gap-20 md:py-20">
       {/* Edition information */}
@@ -328,7 +328,7 @@ export default function StoicCollectionPage() {
             </p>
           </div>
 
-          <p className="font-serif text-lg">$200 USD</p>
+          <p className="font-serif text-lg">$150 USD</p>
         </div>
 
         <div className="mt-9 inline-flex items-center gap-4 text-[9px] uppercase tracking-[0.24em]">

@@ -1,10 +1,15 @@
 "use client"
 
-import Image from "next/image"  
+import Image from "next/image"
 import Link from "next/link"
-
+import { useState } from "react"
+import { products } from "@/lib/products"
+import { useCart } from "@/components/cart-provider"
 
 export default function MarcusAureliusPage() {
+  const product = products.marcusAurelius
+  const { addItem } = useCart()
+  const [addedToCart, setAddedToCart] = useState(false)
 
   return (
     <main className="min-h-screen bg-[#E2E1DE] text-[#181612]">
@@ -73,19 +78,21 @@ export default function MarcusAureliusPage() {
               </Link>
 
               <div className="mt-14">
-                <p className="text-[8px] uppercase tracking-[0.3em] text-[#986F39]">
-                  Stoic Collection · Edition I
-                </p>
+               <p className="text-[8px] uppercase tracking-[0.3em] text-[#986F39]">
+  Stoic Collection · {product.editionIdentifier}
+</p>
 
-                <h1 className="mt-5 font-serif text-4xl font-light tracking-[-0.035em] sm:text-5xl">
-                  Marcus Aurelius
-                </h1>
+<h1 className="mt-5 font-serif text-4xl font-light tracking-[-0.035em] sm:text-5xl">
+  {product.title}
+</h1>
 
-                <p className="mt-3 font-serif text-base italic text-[#655F57]">
-                  Meditations
-                </p>
+<p className="mt-3 font-serif text-base italic text-[#655F57]">
+  {product.subtitle}
+</p>
 
-                <p className="mt-6 font-serif text-xl">$200 USD</p>
+<p className="mt-6 font-serif text-xl">
+  ${product.price} USD
+</p>
               </div>
 
               <div className="my-9 h-px bg-[#CEC7BD]" />
@@ -114,12 +121,22 @@ export default function MarcusAureliusPage() {
                 </div>
 
                 <div className="flex items-center justify-between gap-6">
-                  <span className="text-[8px] uppercase tracking-[0.22em] text-[#77716A]">
-                    Binding
-                  </span>
+  <span className="text-[8px] uppercase tracking-[0.22em] text-[#77716A]">
+    Binding
+  </span>
 
-                  <span className="text-xs">Rebound by hand</span>
-                </div>
+  <span className="text-xs">Rebound by hand</span>
+</div>
+
+<div className="flex items-center justify-between gap-6">
+  <span className="text-[8px] uppercase tracking-[0.22em] text-[#77716A]">
+    Edition
+  </span>
+
+  <span className="text-xs">
+    {product.editionIdentifier} · Limited to {product.editionLimit}
+  </span>
+</div>
               </div>
 
               <div className="mt-9">
@@ -135,9 +152,27 @@ export default function MarcusAureliusPage() {
               {/* PLACEHOLDER — Connect to the cart after the CartProvider is installed. */}
 <button
   type="button"
-  className="mt-8 w-full border border-[#6F211B] bg-[#8E3028] px-6 py-5 text-[9px] uppercase tracking-[0.24em] text-white transition-colors duration-300 hover:bg-[#70231D]"
+  onClick={() => {
+    addItem({
+      id: product.id,
+      name: product.title,
+      price: product.price,
+      image: "/images/stoics/marcus/marcus_cover.png",
+    })
+
+    setAddedToCart(true)
+
+    window.setTimeout(() => {
+      setAddedToCart(false)
+    }, 1800)
+  }}
+  className={`mt-8 w-full border px-6 py-5 text-[9px] uppercase tracking-[0.24em] text-white transition-all duration-300 ${
+    addedToCart
+      ? "border-[#4F5A45] bg-[#350616]"
+      : "border-[#6F211B] bg-[#8E3028] hover:bg-[#70231D]"
+  }`}
 >
-  Add to Cart
+  {addedToCart ? "Added to Cart ✓" : "Add to Cart"}
 </button>
 
               <p className="mt-4 text-center text-[9px] font-light leading-5 text-[#77716A]">

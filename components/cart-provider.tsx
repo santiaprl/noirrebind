@@ -90,8 +90,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }
 
   const clearCart = () => {
-    setItems([])
-  }
+  window.localStorage.removeItem("noir-rebind-cart")
+  setItems([])
+}
 
   const itemCount = items.reduce(
     (total, item) => total + item.quantity,

@@ -1,9 +1,9 @@
-'use client';
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
-import { arcs, books } from "@/lib/data"
-import { usePathname } from 'next/navigation';
-  const museumCollections = [
+
+const museumCollections = [
   {
     id: "stoics",
     number: "I",
@@ -34,154 +34,117 @@ import { usePathname } from 'next/navigation';
 ]
 
 export default function ArcsPage() {
-const pathname = usePathname ();
   return (
     <div className="bg-white">
-      <div className="container mx-auto py-16 px-4">
-        <h1 className="font-serif text-4xl md:text-5xl font-light text-center mb-16">The Collection</h1>
-          <p className="mx-auto mt-6 max-w-2xl text-center font-serif text-lg font-light leading-8 text-[#5F574F] md:text-xl">
-  Philosophy, literature, and enduring works; selected with intention
-  and rebound by hand.
-</p>
+      <div className="container mx-auto px-4 py-16">
+        <h1 className="mb-16 text-center font-serif text-4xl font-light md:text-5xl">
+          The Collection
+        </h1>
 
-<div
-  className="mx-auto mb-16 mt-8 h-px w-12 bg-[#A77B2F]"
-  aria-hidden="true"
-/>
+        <p className="mx-auto mt-6 max-w-2xl text-center font-serif text-lg font-light leading-8 text-[#5F574F] md:text-xl">
+          Philosophy, literature, and enduring works; selected with intention
+          and rebound by hand.
+        </p>
+
+        <div
+          className="mx-auto mb-16 mt-8 h-px w-12 bg-[#A77B2F]"
+          aria-hidden="true"
+        />
 
         {/* Museum collection index */}
-<div className="scroll-reveal mb-20 border-t border-[#C9BFAF]">
-  {museumCollections.map((collection, index) => (
-    <Link
-     href={
-  collection.id === "stoics"
-    ? "/books/stoiccollection"
-    : collection.id === "literary"
-      ? "/books/literarycollection"
-      : "/books/archive"
-}
-      key={collection.id}
-      className="group grid grid-cols-1 gap-8 border-b border-[#C9BFAF] py-10 transition-colors duration-500 hover:bg-[#EFE9DF]/60 md:grid-cols-12 md:items-center md:gap-10 md:px-6 md:py-14"
-    >
-      {/* Collection number */}
-      <div
-  className={`md:col-span-1 ${
-    index % 2 !== 0 ? "md:order-2" : "md:order-1"
-  }`}
->
-        <p className="text-[10px] font-medium uppercase tracking-[0.3em] text-[#A77B2F]">
-          {collection.number}
-        </p>
-      </div>
+        <div className="scroll-reveal mb-20 border-t border-[#C9BFAF]">
+          {museumCollections.map((collection, index) => (
+            <Link
+              href={
+                collection.id === "stoics"
+                  ? "/books/stoiccollection"
+                  : collection.id === "literary"
+                    ? "/books/literarycollection"
+                    : "/books/archive"
+              }
+              key={collection.id}
+              className="group grid grid-cols-1 gap-8 border-b border-[#C9BFAF] py-10 transition-colors duration-500 hover:bg-[#EFE9DF]/60 md:grid-cols-12 md:items-center md:gap-10 md:px-6 md:py-14"
+            >
+              {/* Collection number */}
+              <div
+                className={`md:col-span-1 ${
+                  index % 2 !== 0 ? "md:order-2" : "md:order-1"
+                }`}
+              >
+                <p className="text-[10px] font-medium uppercase tracking-[0.3em] text-[#A77B2F]">
+                  {collection.number}
+                </p>
+              </div>
 
-      {/* Collection information */}
-      <div
-  className={`md:col-span-4 ${
-    index % 2 !== 0 ? "md:order-3" : "md:order-2"
-  }`}
->
-        <p className="mb-4 text-[9px] font-medium uppercase tracking-[0.25em] text-[#82786E]">
-          Noir Rebind Collection
-        </p>
+              {/* Collection information */}
+              <div
+                className={`md:col-span-4 ${
+                  index % 2 !== 0 ? "md:order-3" : "md:order-2"
+                }`}
+              >
+                <p className="mb-4 text-[9px] font-medium uppercase tracking-[0.25em] text-[#82786E]">
+                  Noir Rebind Collection
+                </p>
 
-        <h2 className="font-serif text-3xl font-light tracking-[-0.03em] text-[#181612] transition-transform duration-500 group-hover:translate-x-1 md:text-5xl">
-          {collection.title}
-        </h2>
+                <h2 className="font-serif text-3xl font-light tracking-[-0.03em] text-[#181612] transition-transform duration-500 group-hover:translate-x-1 md:text-5xl">
+                  {collection.title}
+                </h2>
 
-        <p className="mt-4 font-serif text-lg italic text-[#655D55] md:text-xl">
-          {collection.subtitle}
-        </p>
+                <p className="mt-4 font-serif text-lg italic text-[#655D55] md:text-xl">
+                  {collection.subtitle}
+                </p>
 
-        <p className="mt-5 max-w-xl text-sm font-light leading-7 text-[#706860]">
-          {collection.description}
-        </p>
+                <p className="mt-5 max-w-xl text-sm font-light leading-7 text-[#706860]">
+                  {collection.description}
+                </p>
 
-        <div className="mt-7 inline-flex items-center text-[9px] font-medium uppercase tracking-[0.2em] text-[#181612]">
-          {collection.id === "archive"
-  ? "Enter the Archive"
-  : "Explore the Collection"}
-          <span className="ml-4 transition-transform duration-300 group-hover:translate-x-1">
-            →
-          </span>
+                <div className="mt-7 inline-flex items-center text-[9px] font-medium uppercase tracking-[0.2em] text-[#181612]">
+                  {collection.id === "archive"
+                    ? "Enter the Archive"
+                    : "Explore the Collection"}
+
+                  <span className="ml-4 transition-transform duration-300 group-hover:translate-x-1">
+                    →
+                  </span>
+                </div>
+              </div>
+
+              {/* Collection image */}
+              <div className="md:col-span-7">
+                <div className="mx-auto w-full max-w-[460px] overflow-hidden bg-[#EAE5DC]">
+                  <div className="relative aspect-[3/4] overflow-hidden">
+                    <Image
+                      src={collection.image}
+                      alt={collection.title}
+                      fill
+                      className="object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-[1.025]"
+                      sizes="(max-width: 768px) 100vw, 42vw"
+                    />
+                  </div>
+                </div>
+              </div>
+            </Link>
+          ))}
         </div>
-      </div>
 
-      {/* Collection image */}
-      <div className="md:col-span-7">
-        <div className="mx-auto w-full max-w-[460px] overflow-hidden bg-[#EAE5DC]">
-          <div className="relative aspect-[3/4] overflow-hidden">
-            <Image
-              src={collection.image}
-              alt={collection.title}
-              fill
-              className="object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-[1.025]"
-              sizes="(max-width: 768px) 100vw, 42vw"
-            />
-          </div>
-        </div>
-      </div>
-    </Link>
-  ))}
-</div>
-
-        <div className="text-center mb-8">
+        <div className="mb-8 text-center">
           <Link
             href="/arcs/all"
-            className="inline-block px-8 py-3 bg-black text-white text-sm font-medium hover:bg-gray-800 transition-colors duration-300"
+            className="inline-block bg-black px-8 py-3 text-sm font-medium text-white transition-colors duration-300 hover:bg-gray-800"
           >
             View All Editions
           </Link>
         </div>
 
-        <div className="text-center mb-16">
+        <div className="mb-16 text-center">
           <Link
             href="/start-your-rebind"
-            className="inline-block px-8 py-3 bg-white text-black text-sm font-medium border border-black hover:bg-black hover:text-white transition-colors duration-300 mt-4"
+            className="mt-4 inline-block border border-black bg-white px-8 py-3 text-sm font-medium text-black transition-colors duration-300 hover:bg-black hover:text-white"
           >
             Personalize Your Edition →
           </Link>
-        </div>
-
-        <div className="hidden">
-          <h2 className="font-serif text-3xl font-light text-center mb-12">Featured Books</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {books.slice(0, 4).map((book) => (
-  <Link
-    key={book.id}
-    href={`/books/${book.slug}`}
-    className="block border border-gray-200 rounded-lg overflow-hidden group hover:shadow-md transition"
-  >
-    <div className="relative h-64 bg-white flex items-center justify-center">
-  <Image
-    src={`/images/${book.image?.trim()}`}
-    alt={book.title}
-    fill
-    className="object-contain"
-  />
-  <div
-    className="absolute top-0 right-0 px-3 py-1 text-xs text-white z-10"
-    style={{ backgroundColor: arcs[book.arc - 1].color }}
-  >
-    Arc {book.arc}
-  </div>
-</div>
-   {(!pathname?.startsWith("/arcs") || pathname === "/arcs/all") && (
-  <div className="absolute top-0 right-0 px-3 py-1 text-xs text-white z-10"
-       style={{ backgroundColor: arcs[book.arc - 1].color }}>
-    Arc {book.arc}
-  </div>
-)}
-
-    <div className="p-4">
-      <h3 className="font-serif text-lg font-medium mb-2">{book.title}</h3>
-      <p className="text-sm text-gray-600">{book.description}</p>
-    </div>
-  </Link>
-))}
-          </div>
         </div>
       </div>
     </div>
   )
 }
-

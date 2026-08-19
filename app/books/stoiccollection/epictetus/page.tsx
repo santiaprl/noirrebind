@@ -1,7 +1,16 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
+import { useState } from "react"
+import { products } from "@/lib/products"
+import { useCart } from "@/components/cart-provider"
 
 export default function EpictetusPage() {
+  const product = products.epictetus
+  const { addItem } = useCart()
+  const [addedToCart, setAddedToCart] = useState(false)
+
   return (
     <main className="min-h-screen bg-[#E2E1DE] text-[#181612]">
       {/* PLACEHOLDER — Update final price, inventory, and cart connection later. */}
@@ -67,19 +76,21 @@ export default function EpictetusPage() {
               </Link>
 
               <div className="mt-14">
-                <p className="text-[8px] uppercase tracking-[0.3em] text-[#986F39]">
-                  Stoic Collection · Edition III
-                </p>
+               <p className="text-[8px] uppercase tracking-[0.3em] text-[#986F39]">
+  Stoic Collection · {product.editionIdentifier}
+</p>
 
-                <h1 className="mt-5 font-serif text-4xl font-light tracking-[-0.035em] sm:text-5xl">
-                  Epictetus
-                </h1>
+<h1 className="mt-5 font-serif text-4xl font-light tracking-[-0.035em] sm:text-5xl">
+  {product.title}
+</h1>
 
-                <p className="mt-3 font-serif text-base italic text-[#655F57]">
-                  The Enchiridion
-                </p>
+<p className="mt-3 font-serif text-base italic text-[#655F57]">
+  The Enchiridion
+</p>
 
-                <p className="mt-6 font-serif text-xl">$200 USD</p>
+<p className="mt-6 font-serif text-xl">
+  ${product.price} USD
+</p>
               </div>
 
               <div className="my-9 h-px bg-[#CEC7BD]" />
@@ -116,12 +127,22 @@ export default function EpictetusPage() {
                 </div>
 
                 <div className="flex items-center justify-between gap-6">
-                  <span className="text-[8px] uppercase tracking-[0.22em] text-[#77716A]">
-                    Binding
-                  </span>
+  <span className="text-[8px] uppercase tracking-[0.22em] text-[#77716A]">
+    Binding
+  </span>
 
-                  <span className="text-xs">Rebound by hand</span>
-                </div>
+  <span className="text-xs">Rebound by hand</span>
+</div>
+
+<div className="flex items-center justify-between gap-6">
+  <span className="text-[8px] uppercase tracking-[0.22em] text-[#77716A]">
+    Edition
+  </span>
+
+  <span className="text-xs">
+    {product.editionIdentifier} · Limited to {product.editionLimit}
+  </span>
+</div>
               </div>
 
               <div className="mt-9">
@@ -134,13 +155,30 @@ export default function EpictetusPage() {
                 </p>
               </div>
 
-              {/* PLACEHOLDER — Connect this button to the cart before launch. */}
               <button
-                type="button"
-                className="mt-8 w-full border border-[#173A2A] bg-[#27523A] px-6 py-5 text-[9px] uppercase tracking-[0.24em] text-white transition-colors duration-300 hover:bg-[#1C3E2C]"
-              >
-                Add to Cart
-              </button>
+  type="button"
+  onClick={() => {
+    addItem({
+      id: product.id,
+      name: product.title,
+      price: product.price,
+      image: "/images/stoics/epictetus/epic_main.png",
+    })
+
+    setAddedToCart(true)
+
+    window.setTimeout(() => {
+      setAddedToCart(false)
+    }, 1800)
+  }}
+  className={`mt-8 w-full border px-6 py-5 text-[9px] uppercase tracking-[0.24em] text-white transition-all duration-300 ${
+    addedToCart
+      ? "border-[#4F5A45] bg-[#5D684F]"
+      : "border-[#173A2A] bg-[#27523A] hover:bg-[#1C3E2C]"
+  }`}
+>
+  {addedToCart ? "Added to Cart ✓" : "Add to Cart"}
+</button>
 
               <p className="mt-4 text-center text-[9px] font-light leading-5 text-[#77716A]">
                 Rebound individually by hand in the Noir Rebind studio.

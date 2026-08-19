@@ -1,7 +1,16 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
+import { useState } from "react"
+import { products } from "@/lib/products"
+import { useCart } from "@/components/cart-provider"
 
 export default function StoicBundlePage() {
+  const product = products.threeStoics
+  const { addItem } = useCart()
+  const [addedToCart, setAddedToCart] = useState(false)
+
   return (
     <main className="min-h-screen bg-[#E2E1DE] text-[#181612]">
       {/* PLACEHOLDER — Update price, availability, and purchase action later. */}
@@ -70,18 +79,20 @@ alt="Interior of the Marcus Aurelius handcrafted edition"
 
               <div className="mt-14">
                 <p className="text-[8px] uppercase tracking-[0.3em] text-[#986F39]">
-                  The Complete Collection
-                </p>
+  Collection Edition · {product.editionIdentifier}
+</p>
 
-                <h1 className="mt-5 font-serif text-4xl font-light tracking-[-0.035em] sm:text-5xl">
-                  The Three Stoics
-                </h1>
+<h1 className="mt-5 font-serif text-4xl font-light tracking-[-0.035em] sm:text-5xl">
+  {product.title}
+</h1>
 
-                <p className="mt-3 font-serif text-base italic text-[#655F57]">
-                  Marcus Aurelius · Seneca · Epictetus
-                </p>
+<p className="mt-3 font-serif text-base italic text-[#655F57]">
+  Marcus Aurelius · Seneca · Epictetus
+</p>
 
-                <p className="mt-6 font-serif text-xl">$600 USD</p>
+<p className="mt-6 font-serif text-xl">
+  ${product.price} USD
+</p>
               </div>
 
               <div className="my-9 h-px bg-[#CEC7BD]" />
@@ -111,35 +122,63 @@ alt="Interior of the Marcus Aurelius handcrafted edition"
                 </div>
 
                 <div className="flex items-center justify-between gap-6">
-                  <span className="text-[8px] uppercase tracking-[0.22em] text-[#77716A]">
-                    Epictetus
-                  </span>
+  <span className="text-[8px] uppercase tracking-[0.22em] text-[#77716A]">
+    Epictetus
+  </span>
 
-                  <span className="text-xs">Forest green</span>
-                </div>
+  <span className="text-xs">Forest green</span>
+</div>
+
+<div className="flex items-center justify-between gap-6">
+  <span className="text-[8px] uppercase tracking-[0.22em] text-[#77716A]">
+    Edition
+  </span>
+
+  <span className="text-xs">
+    {product.editionIdentifier} · Limited to {product.editionLimit}
+  </span>
+</div>
               </div>
 
               <div className="mt-9">
-                <p className="text-[8px] uppercase tracking-[0.22em] text-[#77716A]">
-                  Current status
-                </p>
+  <p className="text-[8px] uppercase tracking-[0.22em] text-[#77716A]">
+    Current status
+  </p>
 
-                <p className="mt-3 text-[10px] uppercase tracking-[0.18em]">
-                  Availability forthcoming
-                </p>
-              </div>
+  <p className="mt-3 text-[10px] uppercase tracking-[0.18em]">
+    Available to order
+  </p>
+</div>
 
               {/* PLACEHOLDER — Connect this button to the cart system before launch. */}
   <button
   type="button"
-  className="mt-8 w-full border border-[#11110F] bg-[#11110F] px-6 py-5 text-[9px] uppercase tracking-[0.24em] text-white transition-colors duration-300 hover:bg-[#2A2926]"
->
-  Add to Cart
-</button> 
+  onClick={() => {
+    addItem({
+      id: product.id,
+      name: product.title,
+      price: product.price,
+      image: "/images/stoics/three_stoics/3stoic_classic.png",
+    })
 
-              <p className="mt-4 text-center text-[9px] font-light leading-5 text-[#77716A]">
-                Final price and availability will be announced before release.
-              </p>
+    setAddedToCart(true)
+
+    window.setTimeout(() => {
+      setAddedToCart(false)
+    }, 1800)
+  }}
+  className={`mt-8 w-full border px-6 py-5 text-[9px] uppercase tracking-[0.24em] text-white transition-all duration-300 ${
+    addedToCart
+      ? "border-[#4F5A45] bg-[#a4927a]"
+      : "border-[#11110F] bg-[#11110F] hover:bg-[#2A2926]"
+  }`}
+>
+  {addedToCart ? "Added to Cart ✓" : "Add to Cart"}
+</button>
+
+             <p className="mt-4 text-center text-[9px] font-light leading-5 text-[#77716A]">
+  Three handcrafted editions presented as one independent Collection Edition.
+</p>
 
               <details className="mt-10 border-t border-[#CEC7BD] py-6">
                 <summary className="cursor-pointer list-none text-[9px] uppercase tracking-[0.22em]">

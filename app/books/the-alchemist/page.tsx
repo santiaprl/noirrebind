@@ -1,7 +1,16 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
+import { useState } from "react"
+import { products } from "@/lib/products"
+import { useCart } from "@/components/cart-provider"
 
 export default function AlchemistPage() {
+  const product = products.alchemist
+  const { addItem } = useCart()
+  const [addedToCart, setAddedToCart] = useState(false)
+
   return (
     <main className="min-h-screen bg-[#D9D9D6] text-[#181612]">
       {/*
@@ -77,14 +86,16 @@ export default function AlchemistPage() {
                 </p>
 
                 <h1 className="mt-5 font-serif text-4xl font-light tracking-[-0.035em] sm:text-5xl">
-                  The Alchemist
-                </h1>
+  {product.title}
+</h1>
 
-                <p className="mt-3 font-serif text-base italic text-[#655F57]">
-                  Paulo Coelho
-                </p>
+<p className="mt-3 font-serif text-base italic text-[#655F57]">
+  Paulo Coelho
+</p>
 
-                <p className="mt-6 font-serif text-xl">$175 USD</p>
+<p className="mt-6 font-serif text-xl">
+  ${product.price} USD
+</p>
               </div>
 
               <div className="my-8 h-px bg-[#CEC7BD]" />
@@ -137,14 +148,30 @@ export default function AlchemistPage() {
           
               </div>
 
-              {/* PLACEHOLDER — Connect to the integrated cart before launch. */}
-              <button
-                type="button"
-                className="mt-8 w-full border border-[#07182B] bg-[#0B2944] px-6 py-5 text-[9px] uppercase tracking-[0.24em] text-white transition-colors duration-300 hover:bg-[#07182B]"
-              >
-                Add to Cart
-              </button>
+             <button
+  type="button"
+  onClick={() => {
+    addItem({
+      id: product.id,
+      name: product.title,
+      price: product.price,
+      image: "/images/Alchemist/alchemist_main.jpg",
+    })
 
+    setAddedToCart(true)
+
+    window.setTimeout(() => {
+      setAddedToCart(false)
+    }, 1800)
+  }}
+  className={`mt-8 w-full border px-6 py-5 text-[9px] uppercase tracking-[0.24em] text-white transition-all duration-300 ${
+    addedToCart
+      ? "border-[#4F5A45] bg-[#5D684F]"
+      : "border-[#07182B] bg-[#0B2944] hover:bg-[#07182B]"
+  }`}
+>
+  {addedToCart ? "Added to Cart ✓" : "Add to Cart"}
+</button>
               <p className="mt-4 text-center text-[9px] font-light leading-5 text-[#77716A]">
                 Prepared by hand. Please allow 9–12 business days before
                 shipping.

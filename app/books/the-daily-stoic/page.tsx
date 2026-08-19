@@ -1,7 +1,13 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
+import { useState } from "react"
+import { products } from "@/lib/products"
+import { useCart } from "@/components/cart-provider"
 
 const images = [
+
   {
     src: "/images/Daily_Stoic_Large.jpeg",
     alt: "The Daily Stoic handcrafted black leather edition",
@@ -20,6 +26,10 @@ const images = [
 ]
 
 export default function DailyStoicPage() {
+  const product = products.dailyStoic
+  const { addItem } = useCart()
+  const [addedToCart, setAddedToCart] = useState(false)
+
   return (
     <main className="min-h-screen bg-[#D3D3D0] text-[#181816]">
       <div className="mx-auto grid max-w-[1600px] gap-1 px-2 py-2 lg:grid-cols-[minmax(0,2fr)_minmax(340px,0.78fr)]">
@@ -54,19 +64,20 @@ export default function DailyStoicPage() {
           </Link>
 
           <p className="mt-10 text-[8px] uppercase tracking-[0.3em] text-[#9A7338]">
-            Companion Edition · No. IV
-          </p>
+  Stoic Collection · {product.editionIdentifier}
+</p>
 
-          <h1 className="mt-5 font-serif text-4xl font-light tracking-[-0.035em] sm:text-5xl">
-            The Daily Stoic
-          </h1>
+<h1 className="mt-5 font-serif text-4xl font-light tracking-[-0.035em] sm:text-5xl">
+  {product.title}
+</h1>
 
-          <p className="mt-2 font-serif text-sm italic text-[#6D6861]">
-            Ryan Holiday and Stephen Hanselman
-          </p>
+<p className="mt-2 font-serif text-sm italic text-[#6D6861]">
+  Ryan Holiday and Stephen Hanselman
+</p>
 
-          <p className="mt-5 font-serif text-lg">$200 USD</p>
-
+<p className="mt-5 font-serif text-lg">
+  ${product.price} USD
+</p>
           <div className="my-8 h-px bg-[#CEC7BC]" />
 
           <p className="text-sm font-light leading-7 text-[#69645D]">
@@ -93,13 +104,23 @@ export default function DailyStoicPage() {
               <dd className="text-xs">Gold and silver</dd>
             </div>
 
-            <div className="flex items-center justify-between gap-6">
-              <dt className="text-[8px] uppercase tracking-[0.25em] text-[#77726B]">
-                Binding
-              </dt>
+           <div className="flex items-center justify-between gap-6">
+  <dt className="text-[8px] uppercase tracking-[0.25em] text-[#77726B]">
+    Binding
+  </dt>
 
-              <dd className="text-xs">Rebound by hand</dd>
-            </div>
+  <dd className="text-xs">Rebound by hand</dd>
+</div>
+
+<div className="flex items-center justify-between gap-6">
+  <dt className="text-[8px] uppercase tracking-[0.25em] text-[#77726B]">
+    Edition
+  </dt>
+
+  <dd className="text-xs">
+    {product.editionIdentifier} · Limited to {product.editionLimit}
+  </dd>
+</div>
           </dl>
 
           {/* Availability */}
@@ -109,17 +130,34 @@ export default function DailyStoicPage() {
             </p>
 
             <p className="mt-4 text-[10px] uppercase tracking-[0.24em]">
-              Available to order
-            </p>
+  Final copy available
+</p>
           </div>
 
-          {/* Future integrated cart button */}
-          <button
-            type="button"
-            className="mt-8 w-full border border-[#242422] bg-[#242422] px-6 py-5 text-[9px] uppercase tracking-[0.25em] text-white transition-colors duration-300 hover:bg-black"
-          >
-            Add to Cart
-          </button>
+         <button
+  type="button"
+  onClick={() => {
+    addItem({
+      id: product.id,
+      name: product.title,
+      price: product.price,
+      image: "/images/Daily_Stoic_Large.jpeg",
+    })
+
+    setAddedToCart(true)
+
+    window.setTimeout(() => {
+      setAddedToCart(false)
+    }, 1800)
+  }}
+  className={`mt-8 w-full border px-6 py-5 text-[9px] uppercase tracking-[0.25em] text-white transition-all duration-300 ${
+    addedToCart
+      ? "border-[#4F5A45] bg-[#a4927a]"
+      : "border-[#242422] bg-[#242422] hover:bg-black"
+  }`}
+>
+  {addedToCart ? "Added to Cart ✓" : "Add to Cart"}
+</button>
 
           <p className="mt-4 text-center text-[9px] font-light text-[#8A857E]">
             Please allow 9–12 business days before shipping.

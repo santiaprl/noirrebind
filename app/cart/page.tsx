@@ -4,6 +4,10 @@ import Image from "next/image"
 import Link from "next/link"
 import { Minus, Plus, Trash2 } from "lucide-react"
 import { useCart } from "@/components/cart-provider"
+import {
+  getProductById,
+  getProductEditionLabel,
+} from "@/lib/products"
 
 export default function CartPage() {
   const {
@@ -124,9 +128,17 @@ export default function CartPage() {
                         <div>
                           <div className="flex items-start justify-between gap-6">
                             <div>
-                              <p className="mb-3 text-[8px] uppercase tracking-[0.26em] text-[#9B7338]">
-                                Handcrafted Edition
-                              </p>
+                             <p className="mb-3 text-[8px] uppercase tracking-[0.26em] text-[#9B7338]">
+  {getProductEditionLabel(
+    getProductById(item.id) ?? {
+      id: item.id,
+      slug: "",
+      title: item.name,
+      price: item.price,
+      type: "permanent",
+    }
+  )}
+</p>
 
                               <h2 className="font-serif text-3xl font-light">
                                 {item.name}
