@@ -1,222 +1,245 @@
 import Image from "next/image"
 import Link from "next/link"
+import ScrollLink from "@/components/scroll-link"
+import Testimonials from "@/components/testimonials"
+import { getProductEditionLabel, products, type Product } from "@/lib/products"
+
+type CollectionEdition = {
+  product: Product
+  /** Author or subtitle, as shown on the product page. */
+  byline: string
+  /** Short description, as written on the product page. */
+  description: string
+  image: { src: string; alt: string }
+}
+
+// Titles, prices, and routes come from lib/products.ts.
+// Bylines, descriptions, and images match each individual product page.
+const collection: CollectionEdition[] = [
+  {
+    product: products.marcusAurelius,
+    byline: products.marcusAurelius.subtitle,
+    description:
+      "A handcrafted leather interpretation of the private reflections of Marcus Aurelius—words written without an audience, preserved for readers centuries later.",
+    image: {
+      src: "/images/stoics/marcus/marcus_cover.png",
+      alt: "Meditations by Marcus Aurelius rebound in red leather",
+    },
+  },
+  {
+    product: products.seneca,
+    byline: "Letters from a Stoic",
+    description:
+      "A handcrafted leather interpretation of Seneca’s letters on time, friendship, grief, virtue, and the difficult practice of living according to one’s principles.",
+    image: {
+      src: "/images/stoics/seneca/seneca.png",
+      alt: "Letters from a Stoic by Seneca rebound in blue leather",
+    },
+  },
+  {
+    product: products.epictetus,
+    byline: "The Enchiridion",
+    description:
+      "A handcrafted leather interpretation of Epictetus’s enduring guide to freedom, judgment, and the discipline of separating what belongs to us from what does not.",
+    image: {
+      src: "/images/stoics/epictetus/epic_main.png",
+      alt: "The Enchiridion by Epictetus rebound in green leather",
+    },
+  },
+  {
+    product: products.dailyStoic,
+    byline: "Ryan Holiday and Stephen Hanselman",
+    description:
+      "A handcrafted companion for daily reflection, preserving the enduring ideas of Stoicism in an edition designed to be opened, considered, and returned to each day.",
+    image: {
+      src: "/images/Daily_Stoic_Large.jpeg",
+      alt: "The Daily Stoic handcrafted black leather edition",
+    },
+  },
+  {
+    product: products.alchemist,
+    byline: "Paulo Coelho",
+    description:
+      "A handcrafted leather interpretation of Santiago’s journey—a story of pursuit, purpose, and learning to recognize the path that has been calling all along.",
+    image: {
+      src: "/images/Alchemist/alchemist_main.jpg",
+      alt: "The Alchemist handcrafted leather edition",
+    },
+  },
+]
+
+// Layout helpers so the five cards stay balanced:
+// desktop = 3 + 2 (second row centred), tablet = 2 + 2 + 1 (last card centred).
+const cardPlacement = [
+  "",
+  "",
+  "",
+  "lg:col-start-2",
+  "sm:col-span-2 sm:mx-auto sm:w-[calc(50%-0.75rem)] lg:col-span-2 lg:mx-0 lg:w-auto",
+]
 
 export default function Home() {
   return (
     <div>
-     {/* Hero Section */}
-<section className="relative flex min-h-[90vh] w-full items-center justify-center overflow-hidden bg-[#F8F5EF] px-6 py-24 text-[#171512]">
-  
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-[#F8F5EF] px-6 pb-20 pt-20 text-[#171512] md:pb-24 md:pt-28">
+        <div className="hero-reveal mx-auto max-w-5xl text-center">
+          <p className="mb-10 text-[10px] font-medium uppercase tracking-[0.32em] text-[#A77B2F] md:text-xs">
+            A Bookbinding Studio
+          </p>
 
-  <div className="hero-reveal relative z-10 mx-auto max-w-5xl text-center">
-    <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.32em] text-[#A77B2F] md:text-xs">
-      Noir Rebind · Handcrafted Editions
-    </p>
+          <h1 className="font-serif text-6xl font-light leading-[0.9] tracking-[-0.045em] sm:text-7xl md:text-8xl lg:text-9xl">
+            Noir Rebind.
+          </h1>
 
-    <h1 className="font-serif text-5xl font-light leading-[0.95] tracking-[-0.04em] sm:text-6xl md:text-7xl lg:text-8xl">
-      We Rebind Books
-      <span className="block italic">by Hand.</span>
-    </h1>
+          <p className="mt-6 font-serif text-3xl font-light italic leading-tight tracking-[-0.02em] text-[#2E2A25] sm:text-4xl md:mt-8 md:text-5xl">
+            The Art of Rebinding Books.
+          </p>
 
-    <p className="mx-auto mt-8 max-w-2xl font-serif text-lg font-light leading-relaxed text-[#39352F] md:text-2xl">
-      Handcrafted leather editions for readers, collectors, and the books
-      that deserve a second life.
-    </p>
-
-    <p className="mx-auto mt-5 max-w-xl text-sm font-light leading-7 text-[#6B665D] md:text-base">
-      Explore our collection, or create an
-      edition of your own.
-    </p>
-
-    <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-      <Link
-        href="/arcs/all"
-        className="inline-flex min-h-[48px] min-w-[220px] items-center justify-center border border-[#171512] bg-[#171512] px-8 text-xs font-medium uppercase tracking-[0.14em] text-white transition-all duration-500 hover:bg-transparent hover:text-[#171512]"
-      >
-        Explore the Library
-      </Link>
-
-      <Link
-        href="/start-your-rebind"
-        className="inline-flex min-h-[48px] min-w-[220px] items-center justify-center border border-[#171512] bg-transparent px-8 text-xs font-medium uppercase tracking-[0.14em] text-[#171512] transition-all duration-500 hover:bg-[#171512] hover:text-white"
-      >
-        Customize Your Edition
-      </Link>
-    </div>
-  </div>
-
-  
-</section>
-      
-      {/* Our Vision Section */}
-<section className="relative overflow-hidden bg-[#EFE9DF] px-6 py-28 text-[#171512] md:py-36">
-  <div
-  className="absolute left-1/2 top-0 flex -translate-x-1/2 flex-col items-center"
-  aria-hidden="true"
->
-  <span className="-mt-1.5 h-3 w-3 rotate-45 border border-[#A77B2F]/60 bg-[#EFE9DF]" />
-  <span className="h-20 w-px bg-[#A77B2F]/50" />
-</div>
-
-  <div className="scroll-reveal mx-auto max-w-4xl text-center">
-    <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.32em] text-[#A77B2F] md:text-xs">
-      Our Vision
-    </p>
-
-    <h2 className="font-serif text-4xl font-light leading-tight tracking-[-0.03em] sm:text-5xl md:text-6xl">
-      A book worth preserving deserves
-      <span className="block italic">a form worthy of what it holds.</span>
-    </h2>
-
-    <div
-      className="mx-auto my-10 h-px w-12 bg-[#A77B2F]"
-      aria-hidden="true"
-    />
-
-    <div className="mx-auto max-w-2xl space-y-6 text-sm font-light leading-8 text-[#575148] md:text-base">
-      <p>
-        At Noir Rebind, we create handcrafted leather editions of books
-        worth preserving.
-      </p>
-
-      <p>
-        Whether drawn from philosophy, literature, or modern classics, each
-        volume is carefully rebound by hand to honor the ideas, stories, and
-        authors that continue to shape us.
-      </p>
-    </div>
-
-    <p className="mt-10 font-serif text-lg italic tracking-wide text-[#2E2A25] md:text-xl">
-      Built to be read. Crafted to endure.
-    </p>
-  </div>
-</section>
-
-      {/* The Stoics Collection Section */}
-<section className="border-t border-[#C8B99D]/30 bg-[#181612] px-6 py-28 text-[#F3EDE2] md:px-12 md:py-36">
-  <div className="scroll-reveal mx-auto max-w-[1500px]">
-    {/* Collection introduction */}
-    <div className="mb-14 flex flex-col gap-8 md:mb-16 md:flex-row md:items-end md:justify-between">
-      <div>
-        <p className="mb-5 text-[10px] font-medium uppercase tracking-[0.32em] text-[#B58A3A] md:text-xs">
-          The Stoic Collection
-        </p>
-
-        <h2 className="font-serif text-5xl font-light leading-[0.95] tracking-[-0.04em] sm:text-6xl md:text-7xl">
-          The Stoics.
-          <span className="block italic text-[#D8CFC0]">
-            Bound in leather.
-          </span>
-        </h2>
-      </div>
-
-      <p className="max-w-sm text-sm font-light leading-7 text-[#AAA397]">
-        Three enduring voices, reimagined as handcrafted editions made to be
-        read, revisited, and kept.
-      </p>
-    </div>
-
-    {/* Book grid */}
-    <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-6">
-      {/* Marcus Aurelius */}
-      <article className="group">
-        <div className="relative aspect-[3/4] overflow-hidden bg-[#24211C] p-3 ring-1 ring-white/10">
-          <Image
-            src="/images/stoics/marcus/marcus_cover.png"
-            alt="Meditations by Marcus Aurelius rebound in red leather"
-            fill
-            className="object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
-            sizes="(max-width: 768px) 100vw, 33vw"
+          <div
+            className="mx-auto my-10 h-px w-12 bg-[#A77B2F] md:my-12"
+            aria-hidden="true"
           />
-        </div>
 
-        <div className="flex items-start justify-between px-5 py-5">
-          <div>
-            <h3 className="font-serif text-xl font-light">
-              Marcus Aurelius
-            </h3>
-            <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-[#8F887D]">
-              Meditations
-            </p>
+          <p className="mx-auto max-w-2xl font-serif text-lg font-light leading-relaxed text-[#39352F] md:text-2xl">
+            Handcrafted leather-bound editions, thoughtfully made for you and
+            the people you love.
+          </p>
+
+          <p className="mx-auto mt-5 max-w-xl text-sm font-light leading-7 text-[#6B665D] md:text-base">
+            A meaningful gift for yourself or someone special.
+          </p>
+
+          <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <ScrollLink
+              targetId="collection"
+              className="inline-flex min-h-[48px] min-w-[220px] items-center justify-center border border-[#171512] bg-[#171512] px-8 text-xs font-medium uppercase tracking-[0.14em] text-white transition-all duration-500 hover:bg-transparent hover:text-[#171512]"
+            >
+              Explore the Collection
+            </ScrollLink>
+
+            <Link
+              href="/start-your-rebind"
+              className="inline-flex min-h-[48px] min-w-[220px] items-center justify-center border border-[#171512] bg-transparent px-8 text-xs font-medium uppercase tracking-[0.14em] text-[#171512] transition-all duration-500 hover:bg-[#171512] hover:text-white"
+            >
+              Customize Your Cover
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* The Collection Section */}
+      <section
+        id="collection"
+        aria-labelledby="collection-heading"
+        className="scroll-mt-4 border-t border-[#BEB8AE]/60 bg-[#F3F0E9] px-6 pb-28 pt-24 text-[#181612] md:px-12 md:pb-36 md:pt-32"
+      >
+        <div className="scroll-reveal mx-auto max-w-7xl">
+          {/* Catalog heading */}
+          <div className="mb-16 grid gap-10 border-b border-[#BEB8AE] pb-14 md:mb-20 md:grid-cols-12 md:items-end">
+            <div className="md:col-span-7">
+              <p className="mb-6 text-[9px] uppercase tracking-[0.34em] text-[#946F38]">
+                Handcrafted Editions
+              </p>
+
+              <h2
+                id="collection-heading"
+                className="font-serif text-5xl font-light leading-[0.9] tracking-[-0.05em] sm:text-6xl md:text-7xl lg:text-8xl"
+              >
+                The
+                <br />
+                <span className="italic">Collection.</span>
+              </h2>
+            </div>
+
+            
+          
           </div>
 
-          <span className="text-[10px] tracking-[0.18em] text-[#B58A3A]">
-            01
-          </span>
-        </div>
-      </article>
+          {/* Edition catalog */}
+          <div className="grid grid-cols-1 gap-x-6 gap-y-20 sm:grid-cols-2 lg:grid-cols-6">
+            {collection.map(({ product, byline, description, image }, index) => (
+              <Link
+                key={product.id}
+                href={product.slug}
+                className={`group block lg:col-span-2 ${cardPlacement[index]}`}
+              >
+                <article>
+                  {/* Edition photograph */}
+                  <div className="relative aspect-[3/4] overflow-hidden bg-[#D1D1CE]">
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      className="object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-[1.02]"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+                    />
 
-      {/* Seneca */}
-      <article className="group border-b border-r border-white/15">
-       <div className="relative aspect-[3/4] overflow-hidden bg-[#24211C] p-3 ring-1 ring-white/10">
-          <Image
-            src="/images/stoics/seneca/seneca.png"
-            alt="Seneca rebound in blue leather"
-            fill
-            className="object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
-            sizes="(max-width: 768px) 100vw, 33vw"
-          />
-        </div>
+                    <div className="absolute left-5 top-5 text-[8px] uppercase tracking-[0.26em] text-[#F5F2EB] mix-blend-difference">
+                      No. {String(index + 1).padStart(2, "0")}
+                    </div>
+                  </div>
 
-        <div className="flex items-start justify-between px-5 py-5">
-          <div>
-            <h3 className="font-serif text-xl font-light">
-              Seneca
-            </h3>
-            <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-[#8F887D]">
-              Letters from a Stoic
-            </p>
+                  {/* Edition information */}
+                  <div className="border-b border-[#BEB8AE] pb-7 pt-6">
+                    <div className="flex items-start justify-between gap-6">
+                      <div>
+                        <p className="text-[8px] uppercase tracking-[0.25em] text-[#8E6B38]">
+                          {getProductEditionLabel(product)}
+                        </p>
+
+                        <h3 className="mt-4 font-serif text-2xl font-light tracking-[-0.025em] transition-colors duration-500 group-hover:text-[#8E6B38] md:text-3xl">
+                          {product.title}
+                        </h3>
+
+                        <p className="mt-2 font-serif text-sm italic text-[#777067]">
+                          {byline}
+                        </p>
+                      </div>
+
+                      <p className="whitespace-nowrap pt-8 font-serif text-base">
+                        ${product.price} USD
+                      </p>
+                    </div>
+
+                    <p className="mt-5 text-xs font-light leading-6 text-[#6D6760]">
+                      {description}
+                    </p>
+
+                    <div className="mt-7 inline-flex items-center gap-4 text-[8px] uppercase tracking-[0.23em] text-[#181612]">
+                      View the Edition
+                      <span
+                        aria-hidden="true"
+                        className="transition-transform duration-300 group-hover:translate-x-1"
+                      >
+                        →
+                      </span>
+                    </div>
+                  </div>
+                </article>
+              </Link>
+            ))}
           </div>
 
-          <span className="text-[10px] tracking-[0.18em] text-[#B58A3A]">
-            02
-          </span>
-        </div>
-      </article>
-
-      {/* Epictetus */}
-      <article className="group border-b border-r border-white/15">
-<div className="relative aspect-[3/4] overflow-hidden bg-[#24211C] p-3 ring-1 ring-white/10">          <Image
-            src="/images/stoics/epictetus/epic_main.png"
-            alt="Discourses by Epictetus rebound in green leather"
-            fill
-            className="object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
-            sizes="(max-width: 768px) 100vw, 33vw"
-          />
-        </div>
-
-        <div className="flex items-start justify-between px-5 py-5">
-          <div>
-            <h3 className="font-serif text-xl font-light">
-              Epictetus
-            </h3>
-            <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-[#8F887D]">
-              Discourses
-            </p>
+          {/* Full library link */}
+          <div className="mt-20 text-center">
+            <Link
+              href="/arcs/all"
+              className="inline-flex min-h-[48px] items-center justify-center border border-[#181612] px-9 text-[10px] font-medium uppercase tracking-[0.2em] text-[#181612] transition-all duration-500 hover:bg-[#181612] hover:text-[#F3F0E9]"
+            >
+              Explore the Full Library
+            </Link>
           </div>
-
-          <span className="text-[10px] tracking-[0.18em] text-[#B58A3A]">
-            03
-          </span>
         </div>
-      </article>
-    </div>
+      </section>
 
-    {/* Collection button */}
-    <div className="mt-12 text-center">
-      <Link
-        href="/arcs/all"
-        className="inline-flex min-h-[48px] items-center justify-center border border-[#8D806B] px-9 text-[10px] font-medium uppercase tracking-[0.2em] text-[#F3EDE2] transition-all duration-500 hover:border-[#F3EDE2] hover:bg-[#F3EDE2] hover:text-[#181612]"
-      >
-        Discover the Collection
-      </Link>
-    </div>
-  </div>
-</section>
+      {/* Testimonials Section */}
+      <Testimonials />
+
       {/* Past Commissions Section */}
 <section
   id="past-commissions"
-  className="bg-[#F8F5EF] px-6 py-28 text-[#171512] md:px-12 md:py-36"
+  className="border-t border-[#BEB8AE]/60 bg-[#F8F5EF] px-6 py-28 text-[#171512] md:px-12 md:py-36"
 >
   <div className="scroll-reveal mx-auto max-w-6xl">
     {/* Section introduction */}
@@ -240,7 +263,11 @@ export default function Home() {
     <div className="grid grid-cols-1 gap-16 md:grid-cols-12 md:gap-10">
       {/* The Daily Stoic */}
       <article className="group md:col-span-7">
-        <div className="border border-[#CFC6B8] bg-transparent p-1">
+        <Link
+          href="/books/archive"
+          aria-label="The Daily Stoic commission — explore the Studio Archive"
+          className="block border border-[#CFC6B8] bg-transparent p-1 transition-colors duration-700 hover:border-[#A77B2F] focus-visible:border-[#A77B2F] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[#A77B2F]"
+        >
           <div className="relative aspect-[4/5] overflow-hidden">
             <Image
               src="/images/daily-stoic-after.png"
@@ -250,7 +277,7 @@ export default function Home() {
               sizes="(max-width: 768px) 100vw, 58vw"
             />
           </div>
-        </div>
+        </Link>
 
         <div className="mt-5 flex items-start justify-between border-t border-[#171512]/20 pt-4">
           <div>
@@ -271,7 +298,11 @@ export default function Home() {
 
       {/* The Alchemist */}
       <article className="group md:col-span-5 md:mt-32">
-       <div className="border border-[#CFC6B8] bg-transparent p-1">
+       <Link
+          href="/books/archive"
+          aria-label="The Alchemist commission — explore the Studio Archive"
+          className="block border border-[#CFC6B8] bg-transparent p-1 transition-colors duration-700 hover:border-[#A77B2F] focus-visible:border-[#A77B2F] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[#A77B2F]"
+        >
           <div className="relative aspect-[4/5] overflow-hidden">
             <Image
               src="/images/Alchemist/alchemist_cover.jpeg"
@@ -281,7 +312,7 @@ export default function Home() {
               sizes="(max-width: 768px) 100vw, 42vw"
             />
           </div>
-        </div>
+        </Link>
 
         <div className="mt-5 flex items-start justify-between border-t border-[#171512]/20 pt-4">
           <div>
@@ -299,6 +330,26 @@ export default function Home() {
           </span>
         </div>
       </article>
+    </div>
+
+    {/* Studio archive link */}
+    <div className="mt-20 flex flex-col items-center gap-4 text-center md:mt-24">
+      <p className="font-serif text-base italic text-[#6B665D] md:text-lg">
+        More one-of-one bindings from the studio.
+      </p>
+
+      <Link
+        href="/books/archive"
+        className="group inline-flex items-center gap-3 border-b border-[#A77B2F]/60 pb-1.5 text-[10px] font-medium uppercase tracking-[0.24em] text-[#171512] transition-colors duration-500 hover:border-[#171512]"
+      >
+        Explore the Studio Archive
+        <span
+          aria-hidden="true"
+          className="transition-transform duration-300 group-hover:translate-x-1"
+        >
+          →
+        </span>
+      </Link>
     </div>
 
     {/* Custom commission invitation */}
