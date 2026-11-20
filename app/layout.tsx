@@ -6,6 +6,8 @@ import type { Metadata } from "next"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { CartProvider } from "@/components/cart-provider"
+import GoogleAnalytics, { isValidGaId } from "@/components/google-analytics"
+import CookieConsent from "@/components/cookie-consent"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -43,6 +45,8 @@ export default function RootLayout({
     </div>
   </CartProvider>
 </ThemeProvider>
+        <GoogleAnalytics />
+        {isValidGaId && <CookieConsent />}
       </body>
     </html>
   )
