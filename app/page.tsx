@@ -367,7 +367,7 @@ export default function Home() {
         href="/start-your-rebind"
         className="mt-10 inline-flex min-h-[48px] items-center justify-center border border-[#171512] bg-[#171512] px-9 text-[10px] font-medium uppercase tracking-[0.2em] text-white transition-all duration-500 hover:bg-transparent hover:text-[#171512]"
       >
-        Customize Your Edition
+        Customize Your Cover
       </Link>
     </div>
   </div>
